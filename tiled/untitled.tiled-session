@@ -232,11 +232,11 @@
                 9,
                 7
             ],
-            "scale": 4,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 797.875,
-                "y": 85.875
+                "x": 1901.5,
+                "y": 239.5
             }
         },
         "levels/tower-tileset.tsx": {

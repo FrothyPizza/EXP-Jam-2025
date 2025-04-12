@@ -321,6 +321,8 @@ document.body.onload = () => {
             'assets/images/enemies/fly.json',
             'assets/images/enemies/spirit_walker.json',
 
+            'assets/images/enemies/Charon.json',
+
 
             'tiled/GameJamSpriteSheet.tsx',
             'tiled/new-tiles.png',
@@ -328,7 +330,7 @@ document.body.onload = () => {
             'tiled/levels/game_world.world',
 
 
-            
+
             'assets/music/River Styx.mp3',
 
 

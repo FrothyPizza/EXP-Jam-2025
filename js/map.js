@@ -97,8 +97,9 @@ class Map {
         let tileY = Math.floor(resolved.tile / (Loader.tilesetImage.naturalWidth / tileSize));
 
 
-        if(tile == 127 || tile == 168 || tile == 167 || tile == 166 || tile == 246 || tile == 247 || tile == 248) { // 125, 126, 127, 128 are the water tiles
-            // this is a water tile. 
+        // if(tile == 127 || tile == 168 || tile == 167 || tile == 166 || tile == 246 || tile == 247 || tile == 248) { // 125, 126, 127, 128 are the water tiles
+        if(tile == 127) {   
+        // this is a water tile. 
             let frame = Math.floor((APP_ELAPSED_FRAMES % 32) / 8); // returns a number between 0 and 7
             // so, the water tile will be animated moving downwards. To do thism we'll draw two instances of the tile onto an offscreen canvas, one at the top and one at the bottom, offset by the frame index. Then we'll draw the offscreen canvas onto the main canvas.
             // clrear the offscreen canvas

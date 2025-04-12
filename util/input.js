@@ -19,13 +19,13 @@ function createInput(name, keys) {
     });
 }
 
-createInput('left', ['ArrowLeft']);
-createInput('right', ['ArrowRight']);
-createInput('jump', ['ArrowUp', 'z', 'Z', ' ']);
-createInput('down', ['ArrowDown']);
+createInput('left', ['ArrowLeft', 'a', 'A']);
+createInput('right', ['ArrowRight', 'd', 'D']);
+createInput('jump', ['ArrowUp', 'z', 'Z', ' ', 'w', 'W']);
+createInput('down', ['ArrowDown', 's', 'S']);
 createInput('shoot', ['x', 'X']);
-createInput('dash', ['Shift', 'c', 'C']);
-createInput('up', ['ArrowUp']);
+createInput('dash', ['Shift', 'c', 'C', 'q', 'Q', 'e', 'E']);
+createInput('up', ['ArrowUp', 'w', 'W']);
 createInput('enter', ['Enter']);
 createInput('escape', ['Escape', 'Delete', 'Backspace']);
 createInput('pause', ['Escape', 'p', 'P']);

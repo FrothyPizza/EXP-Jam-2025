@@ -34,6 +34,18 @@
                 "y": 127.25
             }
         },
+        "levels/charon.tmx": {
+            "expandedObjectLayers": [
+                9,
+                7
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 112.5,
+                "y": 97.83333333333331
+            }
+        },
         "levels/level_1.tmx": {
             "expandedObjectLayers": [
                 10,
@@ -235,12 +247,20 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1901.5,
+                "x": 2007.5,
                 "y": 239.5
             }
         },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
+        },
+        "levels/underworld_level.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 121.16666666666664,
+                "y": 102.83333333333331
+            }
         },
         "tower-tileset.tsx": {
             "dynamicWrapping": true,

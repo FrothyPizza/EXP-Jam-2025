@@ -10,9 +10,16 @@
         {
             "fileName": "charon.tmx",
             "height": 176,
-            "width": 256,
+            "width": 240,
             "x": 1832,
             "y": -712
+        },
+        {
+            "fileName": "underworld_level.tmx",
+            "height": 176,
+            "width": 2400,
+            "x": 1720,
+            "y": -992
         }
     ],
     "onlyShowAdjacentMaps": false,

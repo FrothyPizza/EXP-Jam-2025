@@ -53,7 +53,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="e"/>
+ <objectgroup id="9" name="Enemies"/>
  <objectgroup id="11" name="CrateLocations"/>
  <objectgroup id="10" name="BossCues"/>
  <objectgroup id="7" name="Spawns">

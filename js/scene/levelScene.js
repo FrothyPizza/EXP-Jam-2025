@@ -17,7 +17,8 @@ class LevelScene extends Scene {
 
 
 
-        this.playerLivesSprite = new AnimatedSprite(Loader.spriteSheets.spider, "Idle", 30);
+
+        this.playerLivesSprite = new AnimatedSprite(Loader.spriteSheets.Theo, "Idle", 30);
         this.playerLivesSprite.paused = false;
         this.playerLivesSprite.tint = "rgba(30, 30, 30, 0.1)";
 
@@ -234,25 +235,38 @@ class LevelScene extends Scene {
             this.drawPauseMenu(context);
         }
 
-        // -------------------------
-        // TIMER IMPLEMENTATION START
-        // -------------------------
-        // We assume APP_ELAPSED_FRAMES is a global variable that increments each frame (60fps)
-        const timerWidth = 24;
-        const timerHeight = 16;
-        // Draw a small black rectangle at the top-left corner; some alpha
-        context.fillStyle = "rgba(0, 0, 0, 0.5)";
-        context.fillRect(0, 0, timerWidth, timerHeight);
 
-        // Calculate elapsed seconds
-        const elapsedSeconds = Math.floor((this.frameTimer.getTime()) / 60);
+        // Draw player lives
+        if (this.player) {
+            const livesX = 2; // Adjust as needed
+            const livesY = 2; // Adjust as needed
 
-        // Draw the timer text centered in the 24x16 rectangle
-        // Coordinates roughly center: x=12 (half of 24), y=8 (half of 16)
-        this.drawBitmapText(context, elapsedSeconds.toString(), 12, 6, 'center', '#fff');
-        // -------------------------
-        // TIMER IMPLEMENTATION END
-        // -------------------------
+            for (let i = 0; i < this.player.lives; i++) {
+                this.playerLivesSprite.draw(context, livesX + i * 10 + context.view.x, livesY + context.view.y);
+            }
+        }
+
+
+
+        // // -------------------------
+        // // TIMER IMPLEMENTATION START
+        // // -------------------------
+        // // We assume APP_ELAPSED_FRAMES is a global variable that increments each frame (60fps)
+        // const timerWidth = 24;
+        // const timerHeight = 16;
+        // // Draw a small black rectangle at the top-left corner; some alpha
+        // context.fillStyle = "rgba(0, 0, 0, 0.5)";
+        // context.fillRect(0, 0, timerWidth, timerHeight);
+
+        // // Calculate elapsed seconds
+        // const elapsedSeconds = Math.floor((this.frameTimer.getTime()) / 60);
+
+        // // Draw the timer text centered in the 24x16 rectangle
+        // // Coordinates roughly center: x=12 (half of 24), y=8 (half of 16)
+        // this.drawBitmapText(context, elapsedSeconds.toString(), 12, 6, 'center', '#fff');
+        // // -------------------------
+        // // TIMER IMPLEMENTATION END
+        // // -------------------------
     }
 
 

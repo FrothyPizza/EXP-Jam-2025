@@ -1,4 +1,68 @@
 
+
+// Enemy that runs back and forth from edge to edge
+class SpiritWalkerEnemy extends Enemy {
+    constructor(x, y) {
+        super(x, y, 8, 8, 150);
+        this.speed = 0.3333333333333;
+        this.direction = 1;
+
+
+        // frames per animation frame
+        this.animationSpeed = 10;
+        this.sprite = new AnimatedSprite(Loader.spriteSheets.spirit_walker, "Run", this.animationSpeed);
+
+        this.amountOfTimeToWait = 90;
+        this.waitTimer = new Clock();
+        this.waitTimer.add(this.amountOfTimeToWait * 2);
+
+
+
+    }
+
+    update(map, entities) {
+        super.update(map, entities);
+
+
+        if(this.rightHit || this.leftHit) {
+            this.direction *= -1;
+            this.x += this.direction;
+        }
+
+        if(this.waitTimer.getTime() > this.amountOfTimeToWait) {
+            this.velocity.x = this.speed * this.direction;
+            this.sprite.direction = this.direction;
+            this.sprite.setAnimation("Run");
+
+        } else {
+            this.velocity.x = 0;
+            this.sprite.setAnimation("Idle");
+        }
+
+
+
+        // if the point to the down and right or left and down is empty, turn around since it's about to fall off
+        if(!map.pointIsCollidingWithWall(this.x + this.width + 1, this.y + this.height + 1)
+        || !map.pointIsCollidingWithWall(this.x - 1, this.y + this.height + 1)) {
+            this.direction *= -1;
+
+            this.waitTimer.restart();
+            this.x += this.direction;
+        }
+
+
+
+
+    }
+
+    draw(context) {
+        super.draw(context);
+        this.sprite.draw(context, this.x, this.y);
+    }
+
+}
+
+
 // // TurtleTadpoleEnemy.js
 
 // class TurtleTadpoleEnemy extends Enemy {

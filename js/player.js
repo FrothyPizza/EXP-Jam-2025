@@ -6,7 +6,10 @@ class Player extends Entity {
         this.spawnPosition = {x: x, y: y};
 
         this.animationSpeed = 10;
-        this.sprite = new AnimatedSprite(Loader.spriteSheets.samurai, "Run", this.animationSpeed);
+        this.sprite = new AnimatedSprite(Loader.spriteSheets.Theo, "Run", this.animationSpeed);
+
+        this.maxLives = 3;
+        this.lives = this.maxLives;
 
 
         this.defaultSpeed = 0.666;
@@ -16,22 +19,28 @@ class Player extends Entity {
 
         this.gravity = 0.12;
         this.defaultGravity = 0.12;
+
 		this.jumpReleaseMultiplier = 0.7;
 		this.maxJumpHoldTime = 11;
 		this.jumpHoldTimer = new Clock();
 		this.jumpHoldTimer.add(this.maxJumpHoldTime + 6);
 		this.hasCutJumpVelocity = false;
         this.canJump = true;
-
-		this.jumpSpeed = 2.3;
-
-        this.canWallJump = false;
-        this.wallJumpSpeed = 1.6;
-        this.isWallJumping = false;
+		this.jumpSpeed = 2.3;        
         this.wallSlideDownSpeed = 0.5;
         this.jumpGracePeriodFrames = 5;
         this.jumpGracePeriodTimer = new Clock();
 
+        this.canGlide = true;
+        this.glideFallSpeed = 0.2;
+
+
+
+
+        this.canWallJump = false;
+        this.wallJumpSpeed = 1.6;
+        this.isWallJumping = false;
+        
         this.framesAllowedTouchSpike = 2;
         this.framesTouchingSpike = 0;
 
@@ -46,6 +55,7 @@ class Player extends Entity {
         this.allowedFramesCollidingWithEnemy = 4;
 
         // Dash variables
+        this.canDash = true;         // Can the player dash?
         this.dashSpeed = 3.5;         // Horizontal speed during dash
         this.dashDuration = 9;     // How long dash lasts (in frames)
         this.dashCooldown = 20;     // Frames before next dash allowed
@@ -68,57 +78,62 @@ class Player extends Entity {
             || map.pointIsCollidingWithSpikes(this.x + this.width - 1, this.y) 
             || map.pointIsCollidingWithSpikes(this.x, this.y + this.height - 1) 
             || map.pointIsCollidingWithSpikes(this.x + this.width - 1, this.y + this.height - 1)) {
-                this.framesTouchingSpike++;
-            } else {
-                this.framesTouchingSpike = 0;
-            }
-            if(this.framesTouchingSpike >= this.framesAllowedTouchSpike) {
-                // this.x = this.spawnPosition.x;
-                // this.y = this.spawnPosition.y;
-                this.takeDamage();
-            }
-
-        // Attempt to start dash if conditions are met
-        if(!this.isDashing && Inputs.dash && this.dashClock.getTime() > this.dashCooldown) {
-            this.isDashing = true;
-            this.dashTimer.restart();
-            this.velocity.x = this.sprite.direction * this.dashSpeed;
-            Loader.playSound("dash01.wav", 0.1);
+            this.framesTouchingSpike++;
+        } else {
+            this.framesTouchingSpike = 0;
+        }
+        if(this.framesTouchingSpike >= this.framesAllowedTouchSpike) {
+            // this.x = this.spawnPosition.x;
+            // this.y = this.spawnPosition.y;
+            this.takeDamage();
         }
 
-        // If currently dashing, override normal movement
-        if(this.isDashing) {
-            this.sprite.setAnimation("Run");
-            // Maintain horizontal dash speed, ignore normal friction and jumping
-            this.velocity.y = 0; 
-            this.velocity.x = this.sprite.direction * this.dashSpeed; 
-
-            this.gravity = 0;
-
-            for(let i = 0; i < 5; i++) {
-                // create light blue particles
-                let particle = new Particle(this.x + this.width/2 + Math.floor(Math.random() * 3) - 1, 
-                    this.y + this.height/2 + Math.floor(Math.random() * 8) - 4, 
-                    2, 2, "rgba(0, 255, 255, 0.5)", Math.floor(Math.random() * 10));
-                entities.push(particle);
+        
+        // Handle dashing
+        if(this.canDash) {
+            // Attempt to start dash if conditions are met
+            if(!this.isDashing && Inputs.dash && this.dashClock.getTime() > this.dashCooldown) {
+                this.isDashing = true;
+                this.dashTimer.restart();
+                this.velocity.x = this.sprite.direction * this.dashSpeed;
+                Loader.playSound("dash01.wav", 0.1);
             }
 
-            if(this.dashTimer.getTime() > this.dashDuration) {
-                this.isDashing = false;
-                this.dashClock.restart(); // start cooldown after dash ends
-                this.velocity.x = 0;
-            }
-            // Skip normal handling while dashing
-            
-            if(this.isDashing && (this.velocity.x > 0 && Inputs.left) || (this.velocity.x < 0 && Inputs.right)) {
-                this.isDashing = false;
-                this.dashClock.restart(); // start cooldown after dash ends
-                this.velocity.x = 0;
-            }
+            // If currently dashing, override normal movement
+            if(this.isDashing) {
+                this.sprite.setAnimation("Run");
+                // Maintain horizontal dash speed, ignore normal friction and jumping
+                this.velocity.y = 0; 
+                this.velocity.x = this.sprite.direction * this.dashSpeed; 
 
-            return;
+                this.gravity = 0;
+
+                for(let i = 0; i < 5; i++) {
+                    // create light blue particles
+                    let particle = new Particle(this.x + this.width/2 + Math.floor(Math.random() * 3) - 1, 
+                        this.y + this.height/2 + Math.floor(Math.random() * 8) - 4, 
+                        2, 2, "rgba(255, 0, 0, 0.5)", Math.floor(Math.random() * 10));
+                    entities.push(particle);
+                }
+
+                if(this.dashTimer.getTime() > this.dashDuration) {
+                    this.isDashing = false;
+                    this.dashClock.restart(); // start cooldown after dash ends
+                    this.velocity.x = 0;
+                }
+                // Skip normal handling while dashing
+                
+                if(this.isDashing && (this.velocity.x > 0 && Inputs.left) || (this.velocity.x < 0 && Inputs.right)) {
+                    this.isDashing = false;
+                    this.dashClock.restart(); // start cooldown after dash ends
+                    this.velocity.x = 0;
+                }
+
+                return;
+            }
         }
         this.gravity = this.defaultGravity;
+
 
         // handle basic physics
         this.velocity.x *= this.friction;
@@ -151,8 +166,8 @@ class Player extends Entity {
             this.hasCutJumpVelocity = true;
         }
         
+        // Handle wall jumping
         if(this.canWallJump) {
-            // Handle wall jumping
             if(!this.bottomHit && this.rightHit && Inputs.jump && this.canJump && !this.isWallJumping) {
                 this.canJump = false;
                 this.velocity.y = -this.jumpSpeed;
@@ -176,6 +191,10 @@ class Player extends Entity {
             }
         }
 
+
+
+
+
         if(Math.abs(this.velocity.y) < 0.25) {
             if(!XOR(Inputs.left, Inputs.right)) {
                 this.sprite.setAnimation("Idle");
@@ -185,7 +204,7 @@ class Player extends Entity {
         } else {
             if(this.velocity.y < 0) {
                 this.sprite.setAnimation("Jump");
-            } else {
+            } else if(this.sprite.currentAnimation !== "Feather Fall") {
                 this.sprite.setAnimation("Fall");
             }
         }
@@ -205,24 +224,31 @@ class Player extends Entity {
                 this.velocity.y -= this.gravity/2;
             if(this.velocity.y > this.wallSlideDownSpeed) this.velocity.y = this.wallSlideDownSpeed;
             this.sprite.direction = this.rightHit ? 1 : -1;
-            this.sprite.setAnimation("Wall Slide");
+            this.sprite.setAnimation("Wall Grab");
         }
         if(!this.bottomHit && this.leftHit && Inputs.left) {
             if(this.velocity.y > 0)
                 this.velocity.y -= this.gravity/2;
             if(this.velocity.y > this.wallSlideDownSpeed) this.velocity.y = this.wallSlideDownSpeed;
             this.sprite.direction = this.rightHit ? 1 : -1;
-            this.sprite.setAnimation("Wall Slide");
+            this.sprite.setAnimation("Wall Grab");
         }
+
+        // handle gliding
+        if(this.canGlide && !this.bottomHit && Inputs.jump) {
+            if(this.velocity.y > 0) {
+                this.velocity.y = this.glideFallSpeed;
+                this.sprite.setAnimation("Feather Fall");
+            }
+        }
+        
 
 
 
         // handle invincibility
         if(this.isInvincible && this.invincibilityTimer.getTime() > this.invincibilityDuration) {
             this.isInvincible = false;
-            if(currentScene.crate.isHidden) {
-                currentScene.crate.relocate();
-            }
+            
         }
 
         this.isWallJumping = false;
@@ -251,18 +277,26 @@ class Player extends Entity {
         if(this.isInvincible || this.dead) return;
         Loader.playSound("damage.wav", 0.3);
     
-        currentScene.freezeFrame(60);
-        context.view.lockedToPlayer = false;
-        this.velocity.x = -this.sprite.direction * 3;
-        this.velocity.y = -3;
-        this.dead = true;
-        this.collidesWithMap = false;
-        this.sprite.setAnimation("Idle");
-        this.sprite.paused = true;
-        setFrameTimeout(() => {
-            if(currentScene.restart)
-                currentScene.restart();
-        }, 240);
+        if(this.lives > 0) {
+            shakeScreen(10);
+            this.lives--;
+            this.isInvincible = true;
+            this.invincibilityTimer.restart();
+                
+        } else if(this.lives <= 0) {
+            currentScene.freezeFrame(60);
+            context.view.lockedToPlayer = false;
+            this.velocity.x = -this.sprite.direction * 3;
+            this.velocity.y = -3;
+            this.dead = true;
+            this.collidesWithMap = false;
+            this.sprite.setAnimation("Idle");
+            this.sprite.paused = true;
+            setFrameTimeout(() => {
+                if(currentScene.restart)
+                    currentScene.restart();
+            }, 240);
+        }
     }
 
     resetPosition() {
@@ -301,70 +335,6 @@ class Player extends Entity {
 
 
 
-// Enemy that runs back and forth from edge to edge
-class SentryEnemy extends Enemy {
-    constructor(x, y) {
-        super(x, y, 8, 8, 150);
-        this.speed = 0.5;
-        this.direction = 1;
-
-
-        // frames per animation frame
-        this.animationSpeed = 10;
-        this.sprite = new AnimatedSprite(Loader.spriteSheets.spider, "Run", this.animationSpeed);
-
-        this.amountOfTimeToWait = 90;
-        this.waitTimer = new Clock();
-        this.waitTimer.add(this.amountOfTimeToWait);
-
-
-    }
-
-    update(map, entities) {
-        super.update(map, entities);
-
-        if(this.rightHit || this.leftHit) {
-            this.direction *= -1;
-            this.x += this.direction;
-        }
-
-        if(this.waitTimer.getTime() > this.amountOfTimeToWait) {
-            this.velocity.x = this.speed * this.direction;
-            this.sprite.direction = this.direction;
-            this.sprite.setAnimation("Run");
-
-        } else {
-            this.velocity.x = 0;
-            this.sprite.setAnimation("Idle");
-        }
-
-        // if the point to the down and right or left and down is empty, turn around since it's about to fall off
-        if(!map.pointIsCollidingWithWall(this.x + this.width + 1, this.y + this.height + 1)
-        || !map.pointIsCollidingWithWall(this.x - 1, this.y + this.height + 1)) {
-            this.direction *= -1;
-
-            this.waitTimer.restart();
-            this.x += this.direction;
-        }
-
-
-
-
-    }
-
-    draw(context) {
-        super.draw(context);
-        this.sprite.draw(context, this.x, this.y);
-    }
-
-    interactWith(other) {
-        // if(other.isEnemy) {
-        //     if(this.colliding(other)) {
-        //         this.direction *= -1;
-        //     }
-        // }
-    }
-}
 
 
 

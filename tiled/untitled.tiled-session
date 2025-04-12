@@ -3,12 +3,17 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "levels/level_run_2.tmx",
+    "activeFile": "levels/styx_level.tmx",
     "expandedProjectPaths": [
         "levels",
         "."
     ],
     "fileStates": {
+        "GameJamSpriteSheet.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 8,
+            "scaleInEditor": 5.5
+        },
         "complete-tileset.tsx": {
             "scaleInDock": 5.5,
             "scaleInEditor": 8
@@ -122,15 +127,15 @@
         },
         "levels/level_7.tmx": {
             "expandedObjectLayers": [
-                10,
                 9,
+                10,
                 7
             ],
-            "scale": 1.5,
-            "selectedLayer": 2,
+            "scale": 8,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 137.33333333333334,
-                "y": 224.33333333333331
+                "x": 79.1875,
+                "y": 23.9375
             }
         },
         "levels/level_8.tmx": {
@@ -159,8 +164,8 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 176.66666666666663,
-                "y": 82.49999999999999
+                "x": 109.66666666666669,
+                "y": 129.16666666666669
             }
         },
         "levels/level_corgi.tmx": {
@@ -191,23 +196,23 @@
         },
         "levels/level_run_1.tmx": {
             "expandedObjectLayers": [
+                9,
                 10,
-                11,
-                9
+                11
             ],
-            "scale": 1,
-            "selectedLayer": 6,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 797,
-                "y": 86.5
+                "x": 547,
+                "y": 19
             }
         },
         "levels/level_run_2.tmx": {
-            "scale": 1.5,
+            "scale": 0.33,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 242.66666666666663,
-                "y": 29.666666666666657
+                "x": -736.3636363636365,
+                "y": 431.81818181818187
             }
         },
         "levels/main_map.tmx": {
@@ -222,20 +227,32 @@
                 "y": -207.5757575757575
             }
         },
+        "levels/styx_level.tmx": {
+            "expandedObjectLayers": [
+                9,
+                7
+            ],
+            "scale": 4,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 120.125,
+                "y": 120.375
+            }
+        },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
         },
         "tower-tileset.tsx": {
-            "scaleInDock": 8,
-            "scaleInEditor": 11
+            "dynamicWrapping": true,
+            "scaleInDock": 5.5,
+            "scaleInEditor": 5.5
         }
     },
     "last.externalTilesetPath": "C:/Users/froth/.vscode/projects/Crate Metroidvania Game/assets/images/tiled",
     "last.imagePath": "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled",
-    "last.worldFilePath": "C:/Users/froth/.vscode/projects/Crate Metroidvania Game/assets/images/tiled/levels",
+    "last.worldFilePath": "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels",
     "loadedWorlds": [
-        "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels/game_world.world",
-        "C:/Users/froth/Documents/GitHub/Platformer-Game/assets/images/tiled/levels/game_world.world"
+        "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels/game_world.world"
     ],
     "map.height": 22,
     "map.lastUsedFormat": "tmx",
@@ -243,28 +260,26 @@
     "map.tileWidth": 8,
     "map.width": 30,
     "openFiles": [
-        "levels/level_3-5.tmx",
-        "levels/level_corgi.tmx",
-        "levels/level_hoopoe.tmx",
-        "levels/level_run_1.tmx",
-        "tower-tileset.tsx",
+        "GameJamSpriteSheet.tsx",
+        "levels/styx_level.tmx",
+        "levels/level_7.tmx",
         "levels/level_run_2.tmx",
-        "levels/level_1.tmx"
+        "levels/level_run_1.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "levels/level_7.tmx",
+        "levels/level_run_1.tmx",
+        "levels/styx_level.tmx",
+        "GameJamSpriteSheet.tsx",
+        "levels/level_run_2.tmx",
+        "tower-tileset.tsx",
         "levels/level_blank.tmx",
         "levels/level_3-5.tmx",
         "levels/level_1.tmx",
-        "levels/level_run_1.tmx",
-        "levels/level_run_2.tmx",
         "levels/level_8.tmx",
-        "levels/level_7.tmx",
         "levels/level_6.tmx",
-        "levels/level_5.tmx",
-        "levels/level_3.tmx",
-        "levels/level_2.tmx",
-        "tower-tileset.tsx"
+        "levels/level_5.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

@@ -1,78 +1,78 @@
 { "frames": [
    {
-    "filename": "samurai 0.aseprite",
+    "filename": "spirit_walker 0.aseprite",
     "frame": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 1.aseprite",
+    "filename": "spirit_walker 1.aseprite",
     "frame": { "x": 8, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 2.aseprite",
+    "filename": "spirit_walker 2.aseprite",
     "frame": { "x": 16, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 3.aseprite",
+    "filename": "spirit_walker 3.aseprite",
     "frame": { "x": 24, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 4.aseprite",
+    "filename": "spirit_walker 4.aseprite",
     "frame": { "x": 32, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 5.aseprite",
+    "filename": "spirit_walker 5.aseprite",
     "frame": { "x": 40, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 6.aseprite",
+    "filename": "spirit_walker 6.aseprite",
     "frame": { "x": 48, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 7.aseprite",
+    "filename": "spirit_walker 7.aseprite",
     "frame": { "x": 56, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
     "sourceSize": { "w": 8, "h": 8 },
-    "duration": 100
+    "duration": 200
    },
    {
-    "filename": "samurai 8.aseprite",
+    "filename": "spirit_walker 8.aseprite",
     "frame": { "x": 64, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 100
    },
    {
-    "filename": "samurai 9.aseprite",
+    "filename": "spirit_walker 9.aseprite",
     "frame": { "x": 72, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
@@ -90,8 +90,53 @@
     "duration": 100
    },
    {
-    "filename": "samurai 10.aseprite",
+    "filename": "spirit_walker 10.aseprite",
     "frame": { "x": 80, "y": 0, "w": 8, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
+    "sourceSize": { "w": 8, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "spirit_walker 11.aseprite",
+    "frame": { "x": 88, "y": 0, "w": 8, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
+    "sourceSize": { "w": 8, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "spirit_walker 12.aseprite",
+    "frame": { "x": 96, "y": 0, "w": 8, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
+    "sourceSize": { "w": 8, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "spirit_walker 13.aseprite",
+    "frame": { "x": 104, "y": 0, "w": 8, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
+    "sourceSize": { "w": 8, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "spirit_walker 14.aseprite",
+    "frame": { "x": 112, "y": 0, "w": 8, "h": 8 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
+    "sourceSize": { "w": 8, "h": 8 },
+    "duration": 100
+   },
+   {
+    "filename": "spirit_walker 15.aseprite",
+    "frame": { "x": 120, "y": 0, "w": 8, "h": 8 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 8, "h": 8 },
@@ -102,17 +147,15 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.3-dev",
-  "image": "samurai.png",
+  "image": "spirit_walker.png",
   "format": "RGBA8888",
-  "size": { "w": 88, "h": 8 },
+  "size": { "w": 128, "h": 8 },
   "scale": "1",
   "frameTags": [
    { "name": "Default", "from": 0, "to": 0, "direction": "forward" },
-   { "name": "Idle", "from": 1, "to": 3, "direction": "forward" },
-   { "name": "Run", "from": 4, "to": 7, "direction": "forward" },
-   { "name": "Fall", "from": 8, "to": 8, "direction": "forward" },
-   { "name": "Jump", "from": 9, "to": 9, "direction": "forward" },
-   { "name": "Wall Slide", "from": 10, "to": 10, "direction": "forward" }
+   { "name": "Run", "from": 1, "to": 3, "direction": "forward" },
+   { "name": "Idle", "from": 4, "to": 7, "direction": "forward" },
+   { "name": "Rotate", "from": 8, "to": 15, "direction": "forward" }
   ],
   "slices": [
   ]

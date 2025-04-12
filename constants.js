@@ -3,16 +3,12 @@
 const CONSTANTS = {
     VERSION: '0.0.1',
 
-    levels: ['level_7', 'level_run_1'],
+    levels: ['styx_level'],
 
     level_info: {
 
-        'level_7': {
-            music: {name: 'turtle_theme.mp3', volume: 0.3},   
-            timeStarCutoffs: [90, 120, 180], 
-        },
-        'level_run_1': {
-            music: {name: 'unicyclist_theme_00.mp3', volume: 0.3},   
+        'styx_level': {
+            music: {name: 'River Styx.mp3', volume: 0.3},   
             timeStarCutoffs: [90, 120, 180], 
         },
 

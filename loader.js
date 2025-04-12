@@ -315,22 +315,21 @@ document.body.onload = () => {
             'assets/fonts/font4x8.png',
             
 
-            'assets/images/testplayer.json',
-            'assets/images/enemies/spider.json',
-            'assets/images/samurai.json',
-            'assets/images/misc/flag.json',
+            'assets/images/player/Theo.json',
 
 
-            'assets/images/enemies/turtle.json',
-            'assets/images/enemies/tadpole.json',
             'assets/images/enemies/fly.json',
-            'assets/images/enemies/run/level_run_2_wall.json',
+            'assets/images/enemies/spirit_walker.json',
 
-            'assets/images/crate.json',
 
-            'tiled/tower-tileset.tsx',
+            'tiled/GameJamSpriteSheet.tsx',
             'tiled/new-tiles.png',
+            'tiled/GameJamSpriteSheet.png',
             'tiled/levels/game_world.world',
+
+
+            
+            'assets/music/River Styx.mp3',
 
 
             'assets/sfx/sam/powerup2.wav',
@@ -342,6 +341,8 @@ document.body.onload = () => {
             'assets/sfx/sam/dash01.wav',
             'assets/sfx/turtle_laser.wav',
 
+
+
             
 
             // 'assets/music/unicyclist_theme.mp3',
@@ -351,7 +352,7 @@ document.body.onload = () => {
             for (let i = 0; i < Loader.gameWorld.maps.length; i++) {
                 levels.push('tiled/levels/' + Loader.gameWorld.maps[i].fileName);
             }
-            Loader.tilesetImage = Loader.images['new-tiles.png'];
+            Loader.tilesetImage = Loader.images['GameJamSpriteSheet.png'];
 
             Loader.load(...levels).then(() => {
                 init();

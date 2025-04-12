@@ -4,6 +4,12 @@ const FLAGS = {
     vertical: 0x40000000,
 };
 
+let offscreenCanvas = document.createElement("canvas");
+offscreenCanvas.width = 8;
+offscreenCanvas.height = 8;
+let offscreenContext = offscreenCanvas.getContext("2d");
+
+
 class Map {
     constructor(xml) {
         this.xml = xml;
@@ -91,15 +97,28 @@ class Map {
         let tileY = Math.floor(resolved.tile / (Loader.tilesetImage.naturalWidth / tileSize));
 
 
+        if(tile == 127 || tile == 168 || tile == 167 || tile == 166 || tile == 246 || tile == 247 || tile == 248) { // 125, 126, 127, 128 are the water tiles
+            // this is a water tile. 
+            let frame = Math.floor((APP_ELAPSED_FRAMES % 32) / 8); // returns a number between 0 and 7
+            // so, the water tile will be animated moving downwards. To do thism we'll draw two instances of the tile onto an offscreen canvas, one at the top and one at the bottom, offset by the frame index. Then we'll draw the offscreen canvas onto the main canvas.
+            // clrear the offscreen canvas
+            offscreenContext.clearRect(0, 0, tileSize, tileSize);
+            offscreenContext.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, 0, frame, tileSize, tileSize);
+            offscreenContext.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, 0, -tileSize + frame, tileSize, tileSize);
+            context.drawImage(offscreenCanvas, x - context.view.x, y - context.view.y, tileSize, tileSize);
+        } else {
+            context.save();
+            context.translate(x + tileSize / 2, y + tileSize / 2);
+            context.scale(resolved.horizontal ? -1 : 1, resolved.vertical ? -1 : 1);
+            context.rotate(resolved.diagonal ? -Math.PI / 2 : 0);
+            context.scale(resolved.diagonal ? -1 : 1, 1);
+            context.translate(-(x + tileSize / 2), -(y + tileSize / 2));
+            context.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, x - context.view.x, y - context.view.y, tileSize, tileSize);
+            context.restore();
+        }
+
     
-        context.save();
-        context.translate(x + tileSize / 2, y + tileSize / 2);
-        context.scale(resolved.horizontal ? -1 : 1, resolved.vertical ? -1 : 1);
-        context.rotate(resolved.diagonal ? -Math.PI / 2 : 0);
-        context.scale(resolved.diagonal ? -1 : 1, 1);
-        context.translate(-(x + tileSize / 2), -(y + tileSize / 2));
-        context.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, x - context.view.x, y - context.view.y, tileSize, tileSize);
-        context.restore();
+
 
 
     }

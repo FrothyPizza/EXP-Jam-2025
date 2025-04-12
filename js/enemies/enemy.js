@@ -72,6 +72,8 @@ class Enemy extends Entity {
 
         super.draw(context);
 
+        return;
+
         // Draw health bar above the enemy
         if(this.maxHealth == 0) return;
         if(this.health <= 0) return;

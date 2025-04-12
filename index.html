@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">       
+        <title>Game</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            @font-face {
+                font-family: 'm3x6';
+                src: url('assets/fonts/m3x6.ttf');
+            }
+
+            canvas {
+                width: 480px;
+                height: 480px;
+                image-rendering: pixelated;
+
+                font-smooth: never;
+                -webkit-font-smoothing : none;
+
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            html {
+                background: #303030;
+
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <script>
+            function link(src) {
+                const script = document.createElement('script');
+                // add cache buster
+                src += '?' + Date.now();
+                script.src = src;
+                document.head.appendChild(script);
+            }
+            // const files = [
+            //     "assets/images/enemies/tadpole_json.js",
+
+            //     "secret.js",
+            //     "js/chatGPT.js",
+
+            //     "util/util.js",
+            //     "util/input.js",
+            //     "util/animatedSprite.js",
+            //     "loader copy.js",
+
+            //     "js/map.js",
+            //     "js/entity.js",
+            //     "js/collider.js",
+            //     "js/particle.js",
+
+            //     "js/enemy.js",
+            //     "js/player.js",
+            //     "js/unicyclist.js",
+            //     "js/turtle.js",
+            //     "js/bee.js",
+                
+            //     "scene.js",
+            //     "app.js",
+
+
+            // ];
+            // files.forEach(link);
+        </script>
+
+        <script src="constants.js"></script>
+
+        <script src="util/util.js"></script>
+        <script src="util/input.js"></script>
+        <script src="util/animatedSprite.js"></script>
+        <script src="loader.js"></script>
+
+        <script src="js/map.js"></script>
+        <script src="js/entity.js"></script>
+        <script src="js/collider.js"></script>
+        <script src="js/particle.js"></script>
+
+        <script src="js/enemies/enemy.js"></script>
+        <script src="js/enemies/boss.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/enemies/turtle.js"></script>
+        <script src="js/enemies/miscEnemies.js"></script>
+
+        <script src="js/projectile.js"></script>
+
+        
+        <script src="js/scene/flag.js"></script>
+        <script src="js/scene/scene.js"></script>
+        <script src="js/scene/levelScene.js"></script>
+        <script src="js/scene/menuScene.js"></script>
+        <script src="js/scene/worldMapScene.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>

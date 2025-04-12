@@ -1,0 +1,274 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "levels/level_run_2.tmx",
+    "expandedProjectPaths": [
+        "levels",
+        "."
+    ],
+    "fileStates": {
+        "complete-tileset.tsx": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 8
+        },
+        "level_1.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 89.49999999999999,
+                "y": 77.16666666666666
+            }
+        },
+        "levels/blank_level.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 89.25,
+                "y": 127.25
+            }
+        },
+        "levels/level_1.tmx": {
+            "expandedObjectLayers": [
+                10,
+                11,
+                9,
+                7
+            ],
+            "scale": 0.75,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 117.33333333333337,
+                "y": 87.33333333333331
+            }
+        },
+        "levels/level_2.tmx": {
+            "expandedObjectLayers": [
+                9,
+                7
+            ],
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 117.33333333333337,
+                "y": 85.99999999999994
+            }
+        },
+        "levels/level_3-5.tmx": {
+            "expandedObjectLayers": [
+                9,
+                7
+            ],
+            "scale": 1,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 238,
+                "y": -40.5
+            }
+        },
+        "levels/level_3.5.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 345,
+                "y": -25
+            }
+        },
+        "levels/level_3.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 158.66666666666666,
+                "y": 87.49999999999999
+            }
+        },
+        "levels/level_4.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 116,
+                "y": 85
+            }
+        },
+        "levels/level_5.tmx": {
+            "expandedObjectLayers": [
+                9,
+                7
+            ],
+            "scale": 0.75,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": -1372,
+                "y": -60.666666666666686
+            }
+        },
+        "levels/level_6.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -323.33333333333326,
+                "y": 265
+            }
+        },
+        "levels/level_7.tmx": {
+            "expandedObjectLayers": [
+                10,
+                9,
+                7
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 137.33333333333334,
+                "y": 224.33333333333331
+            }
+        },
+        "levels/level_8.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": -787.8787878787879,
+                "y": 313.6363636363635
+            }
+        },
+        "levels/level_9.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 195.5,
+                "y": 217.5
+            }
+        },
+        "levels/level_blank.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 176.66666666666663,
+                "y": 82.49999999999999
+            }
+        },
+        "levels/level_corgi.tmx": {
+            "expandedObjectLayers": [
+                11,
+                9
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 120,
+                "y": 87.83333333333334
+            }
+        },
+        "levels/level_hoopoe.tmx": {
+            "expandedObjectLayers": [
+                10,
+                11,
+                9,
+                7
+            ],
+            "scale": 3,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 120,
+                "y": 175.83333333333331
+            }
+        },
+        "levels/level_run_1.tmx": {
+            "expandedObjectLayers": [
+                10,
+                11,
+                9
+            ],
+            "scale": 1,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 797,
+                "y": 86.5
+            }
+        },
+        "levels/level_run_2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 242.66666666666663,
+                "y": 29.666666666666657
+            }
+        },
+        "levels/main_map.tmx": {
+            "expandedObjectLayers": [
+                3,
+                4
+            ],
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 663.6363636363636,
+                "y": -207.5757575757575
+            }
+        },
+        "levels/tower-tileset.tsx": {
+            "scaleInDock": 1
+        },
+        "tower-tileset.tsx": {
+            "scaleInDock": 8,
+            "scaleInEditor": 11
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/froth/.vscode/projects/Crate Metroidvania Game/assets/images/tiled",
+    "last.imagePath": "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled",
+    "last.worldFilePath": "C:/Users/froth/.vscode/projects/Crate Metroidvania Game/assets/images/tiled/levels",
+    "loadedWorlds": [
+        "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels/game_world.world",
+        "C:/Users/froth/Documents/GitHub/Platformer-Game/assets/images/tiled/levels/game_world.world"
+    ],
+    "map.height": 22,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 30,
+    "openFiles": [
+        "levels/level_3-5.tmx",
+        "levels/level_corgi.tmx",
+        "levels/level_hoopoe.tmx",
+        "levels/level_run_1.tmx",
+        "tower-tileset.tsx",
+        "levels/level_run_2.tmx",
+        "levels/level_1.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "levels/level_blank.tmx",
+        "levels/level_3-5.tmx",
+        "levels/level_1.tmx",
+        "levels/level_run_1.tmx",
+        "levels/level_run_2.tmx",
+        "levels/level_8.tmx",
+        "levels/level_7.tmx",
+        "levels/level_6.tmx",
+        "levels/level_5.tmx",
+        "levels/level_3.tmx",
+        "levels/level_2.tmx",
+        "tower-tileset.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
+}

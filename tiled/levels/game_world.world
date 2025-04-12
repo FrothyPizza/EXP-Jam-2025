@@ -1,0 +1,28 @@
+{
+    "maps": [
+        
+        {
+            "fileName": "level_7.tmx",
+            "height": 176,
+            "width": 240,
+            "x": 952,
+            "y": -648
+        },
+        {
+            "fileName": "level_run_1.tmx",
+            "height": 176,
+            "width": 1600,
+            "x": 64,
+            "y": -72
+        },
+        {
+            "fileName": "level_run_2.tmx",
+            "height": 176,
+            "width": 1600,
+            "x": 64,
+            "y": 152
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

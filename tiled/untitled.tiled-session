@@ -233,10 +233,10 @@
                 7
             ],
             "scale": 4,
-            "selectedLayer": 6,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 120.125,
-                "y": 120.375
+                "x": 797.875,
+                "y": 85.875
             }
         },
         "levels/tower-tileset.tsx": {
@@ -268,9 +268,9 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "levels/styx_level.tmx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
-        "levels/styx_level.tmx",
         "GameJamSpriteSheet.tsx",
         "levels/level_run_2.tmx",
         "tower-tileset.tsx",

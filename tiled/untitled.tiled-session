@@ -11,7 +11,7 @@
     "fileStates": {
         "GameJamSpriteSheet.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 8,
+            "scaleInDock": 5.5,
             "scaleInEditor": 5.5
         },
         "complete-tileset.tsx": {
@@ -36,14 +36,14 @@
         },
         "levels/charon.tmx": {
             "expandedObjectLayers": [
-                9,
-                7
+                7,
+                9
             ],
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 112.5,
-                "y": 97.83333333333331
+                "x": 120,
+                "y": 88.16666666666666
             }
         },
         "levels/level_1.tmx": {
@@ -241,14 +241,14 @@
         },
         "levels/styx_level.tmx": {
             "expandedObjectLayers": [
-                9,
-                7
+                7,
+                9
             ],
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 2007.5,
-                "y": 239.5
+                "x": 1599,
+                "y": 87.5
             }
         },
         "levels/tower-tileset.tsx": {
@@ -258,8 +258,8 @@
             "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 121.16666666666664,
-                "y": 102.83333333333331
+                "x": 1200,
+                "y": 88.16666666666666
             }
         },
         "tower-tileset.tsx": {
@@ -282,24 +282,24 @@
     "openFiles": [
         "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
-        "levels/level_7.tmx",
-        "levels/level_run_2.tmx",
-        "levels/level_run_1.tmx"
+        "levels/charon.tmx",
+        "levels/underworld_level.tmx",
+        "levels/styx_level.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
+        "levels/charon.tmx",
+        "levels/underworld_level.tmx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
-        "GameJamSpriteSheet.tsx",
         "levels/level_run_2.tmx",
         "tower-tileset.tsx",
         "levels/level_blank.tmx",
         "levels/level_3-5.tmx",
         "levels/level_1.tmx",
-        "levels/level_8.tmx",
-        "levels/level_6.tmx",
-        "levels/level_5.tmx"
+        "levels/level_8.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

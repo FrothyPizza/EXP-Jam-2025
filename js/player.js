@@ -35,6 +35,8 @@ class Player extends Entity {
         this.glideFallSpeed = 0.2;
 
 
+        this.lastGroundedPositions = [{x: this.x, y: this.y}, {x: this.x, y: this.y}];
+
 
 
         this.canWallJump = false;
@@ -144,6 +146,11 @@ class Player extends Entity {
         // handle jumping
         if(this.bottomHit) { 
             this.jumpGracePeriodTimer.restart();
+
+            this.lastGroundedPositions.push({x: this.x, y: this.y});
+            if(this.lastGroundedPositions.length > 8) {
+                this.lastGroundedPositions.shift();
+            }
         }
         if(!Inputs.jump) this.canJump = true;
         if((this.bottomHit || this.jumpGracePeriodTimer.getTime() < this.jumpGracePeriodFrames) && Inputs.jump && this.canJump) {
@@ -241,6 +248,9 @@ class Player extends Entity {
                 this.sprite.setAnimation("Feather Fall");
             }
         }
+
+
+        this.handleOffMap(map);
         
 
 
@@ -252,6 +262,19 @@ class Player extends Entity {
         }
 
         this.isWallJumping = false;
+    }
+
+    handleOffMap(map) {
+        if(this.y > map.height * map.tileheight - 6) {
+            this.takeDamage(10);
+            currentScene.freezeFrame(60);
+            this.x = this.lastGroundedPositions[0].x;
+            this.y = this.lastGroundedPositions[0].y;
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+            
+        }
+            
     }
 
     interactWith(other) {
@@ -273,12 +296,12 @@ class Player extends Entity {
 
     }
 
-    takeDamage() {
+    takeDamage(shake) {
         if(this.isInvincible || this.dead) return;
         Loader.playSound("damage.wav", 0.3);
     
         if(this.lives > 0) {
-            shakeScreen(10);
+            shakeScreen(shake | 10);
             this.lives--;
             this.isInvincible = true;
             this.invincibilityTimer.restart();

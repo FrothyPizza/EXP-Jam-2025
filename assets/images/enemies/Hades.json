@@ -364,7 +364,7 @@
    { "name": "Punch", "from": 9, "to": 16, "direction": "forward", "color": "#000000ff" },
    { "name": "Summon", "from": 17, "to": 17, "direction": "forward", "color": "#000000ff" },
    { "name": "SummonUpsideDown", "from": 18, "to": 18, "direction": "forward", "color": "#000000ff" },
-   { "name": "Beam", "from": 19, "to": 22, "direction": "forward", "color": "#000000ff" },
+   { "name": "Beam", "from": 19, "to": 25, "direction": "forward", "color": "#000000ff" },
    { "name": "Start", "from": 27, "to": 37, "direction": "forward", "color": "#000000ff" }
   ],
   "slices": [

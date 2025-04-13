@@ -178,8 +178,10 @@ class CharonEnemy extends Boss {
                 this.sprite.direction = this.direction;
 
                 
-                currentScene.startDialogue("You have done well to make it this far, young spartan of the living. However, due to the annoyance you have caused me, I require PAYMENT");
-
+                urrentScene.startDialogue(
+                    "Very well, you are strong of will. Even so I must take a toll..."
+                  );
+          
                 setFrameTimeout(() => {
                     this.sprite.setAnimation("Defeated");
                     this.velocity.x = 0;
@@ -195,7 +197,10 @@ class CharonEnemy extends Boss {
 
                     this.sprite.onAnimationComplete = () => {
                         
-                        currentScene.startDialogue("Now... GO!");
+                        currentScene.startDialogue(
+                            "Your price, your life. Easy to kill, harder to move. Dash no longer, go and find her..."
+                          );
+              
                         this.sprite.setAnimation("Idle");
                         this.sprite.onAnimationComplete = null;
 
@@ -271,6 +276,9 @@ class CharonEnemy extends Boss {
             case 1:
                 console.log("Stage 1");
                 Loader.playSound("EvilLaugh.wav", 0.3);
+                currentScene.startDialogue(
+                          "Stop boy, do you really think you may merely pass into the world of the dead without a toll?"
+                    );
                 break;
             case 2:
                 console.log("Stage 2");

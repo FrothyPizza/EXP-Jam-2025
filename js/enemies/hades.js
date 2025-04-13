@@ -49,7 +49,7 @@ class HadesEnemy extends Boss {
 
         if(this.currentStage > 1) {
             this.sprite.direction = this.direction;
-            context.view.y += 1;
+            context.view.y = this.maxHealth - this.health;
         }
 
 
@@ -130,6 +130,7 @@ class HadesEnemy extends Boss {
         switch(this.state) {
             case "Idle":
                 this.chooseAttack();
+                this.sprite.setAnimation("Idle");
                 break;
             case "StartShootAttack":
                 this.glideToRelativeLocation(-15, 10);
@@ -165,9 +166,23 @@ class HadesEnemy extends Boss {
                 this.sprite.setAnimation("Beam");
                 this.sprite.direction = -1;
                 this.shootingBeam = true;
+                // add a hurtbox to represent the beam
+                if(this.hurtboxes.length < 2) {
+                    this.hurtboxes.push({x: 0, y: this.y + this.height/2, w: this.x, h: 4});
+                }
+                this.hurtboxes[1].x = 0;
+                this.hurtboxes[1].y = this.y + this.height/2;
+                this.hurtboxes[1].w = this.x;
+                this.hurtboxes[1].h = 4;
+
+                console.log(this.hurtboxes);
+
                 this.glideToRelativeLocation(220, 160);
                 if(this.velocity.x === 0 && this.velocity.y === 0) { // then we've made it to the target location
                     this.state = "Idle";
+                    this.sprite.paused = false;
+                    this.shootingBeam = false;
+                    this.hurtboxes.pop(); // remove the beam hurtbox
                 }
                 break;
             default:

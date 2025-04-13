@@ -19,7 +19,7 @@ function shakeScreen(amount) {
     context.view.offsetX = Math.cos(angle) * amount;
     context.view.offsetY = Math.sin(angle) * amount;
     context.view.wasLockedToPlayer = context.view.lockedToPlayer;
-    // context.view.lockedToPlayer = true;
+    context.view.lockedToPlayer = true;
 
     // lerp back
     executeForXFrames(() => {

@@ -30,11 +30,16 @@
                 7,
                 9
             ],
-            "scale": 3,
+            "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
+<<<<<<< Updated upstream
                 "x": 105,
                 "y": 108.16666666666669
+=======
+                "x": 108.375,
+                "y": 100.125
+>>>>>>> Stashed changes
             }
         },
         "levels/level_1.tmx": {
@@ -260,10 +265,17 @@
         }
     },
     "recentFiles": [
+<<<<<<< Updated upstream
         "levels/charon.tmx",
         "levels/styx_level.tmx",
         "levels/underworld_level.tmx",
         "GameJamSpriteSheet.tsx",
+=======
+        "levels/underworld_level.tmx",
+        "GameJamSpriteSheet.tsx",
+        "levels/styx_level.tmx",
+        "levels/charon.tmx",
+>>>>>>> Stashed changes
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
         "levels/level_run_2.tmx",

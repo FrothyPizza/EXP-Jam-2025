@@ -7,7 +7,7 @@
     "fileStates": {
         "GameJamSpriteSheet.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 5.5,
+            "scaleInDock": 8,
             "scaleInEditor": 5.5
         },
         "complete-tileset.tsx": {
@@ -28,26 +28,6 @@
             "viewCenter": {
                 "x": 89.25,
                 "y": 127.25
-            }
-        },
-        "levels/charon.tmx": {
-            "expandedObjectLayers": [
-                7,
-                9
-            ],
-            "scale": 3,
-            "selectedLayer": 2,
-            "viewCenter": {
-                "x": 104.66666666666667,
-                "y": 108.16666666666669
-            }
-        },
-        "levels/hades.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 6,
-            "viewCenter": {
-                "x": -1974,
-                "y": 171
             }
         },
         "levels/level_1.tmx": {
@@ -245,25 +225,24 @@
         },
         "levels/styx_level.tmx": {
             "expandedObjectLayers": [
-                7,
                 9
             ],
-            "scale": 3,
-            "selectedLayer": 2,
+            "scale": 11,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 205,
-                "y": 101.49999999999999
+                "x": 776.4545454545455,
+                "y": 71.5
             }
         },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
         },
         "levels/underworld_level.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 3,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 573,
-                "y": 537
+                "x": 227.33333333333331,
+                "y": 150.16666666666669
             }
         },
         "tower-tileset.tsx": {
@@ -275,23 +254,23 @@
     "openFiles": [
         "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
-        "levels/charon.tmx",
-        "levels/underworld_level.tmx",
-        "levels/styx_level.tmx"
+        "levels/level_7.tmx",
+        "levels/level_run_2.tmx",
+        "levels/level_run_1.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "levels/charon.tmx",
-        "levels/styx_level.tmx",
-        "levels/underworld_level.tmx",
-        "GameJamSpriteSheet.tsx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
+        "levels/styx_level.tmx",
+        "GameJamSpriteSheet.tsx",
         "levels/level_run_2.tmx",
         "tower-tileset.tsx",
         "levels/level_blank.tmx",
         "levels/level_3-5.tmx",
         "levels/level_1.tmx",
-        "levels/level_8.tmx"
+        "levels/level_8.tmx",
+        "levels/level_6.tmx",
+        "levels/level_5.tmx"
     ]
 }

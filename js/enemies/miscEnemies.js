@@ -20,7 +20,6 @@ class SpiritWalkerEnemy extends Enemy {
         this.aliveClock = new Clock();
         this.framesAlive = framesAlive;
 
-        console.log("frames alive: " + this.framesAlive);
 
     }
 
@@ -72,6 +71,209 @@ class SpiritWalkerEnemy extends Enemy {
     }
 
 }
+
+class HellhoundEnemy extends Enemy {
+    constructor(x, y) {
+        super(x, y, 10, 8, 100);
+        this.state = "idle";
+        this.sprite = new AnimatedSprite(Loader.spriteSheets.Hellhound, "Idle", 10);
+
+        this.detectionRange = 60;
+        this.lungeSpeed = 1.5;
+        this.defaultLungeSpeed = 1.5;
+        this.lungeDuration = 40;
+        
+        this.lungeTimer = 0;
+        this.lungeCooldownDuration = 60;
+        this.lungeCooldownTimer = 0;
+        
+        this.gravity = 0.07;
+        this.defaultGravity = 0.07;
+        this.jumpForce = -1;
+    }
+
+    update(map, entities) {
+        super.update(map, entities);
+        let player = currentScene.player;
+        this.direction = player.x > this.x ? 1 : -1;
+        this.sprite.direction = this.direction;
+
+        const dx = player.x - this.x;
+        const dy = player.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // if distance to player is smaller, then initialize a lunge speed modifier to decrease it
+        if (distance < this.detectionRange) {
+            this.lungeSpeed = Math.abs(dx)/distance * this.defaultLungeSpeed * 1.5;
+            if (this.lungeSpeed > 1.5) {
+                this.lungeSpeed = 1.5;
+            }
+        } else {
+            this.lungeSpeed = this.defaultLungeSpeed;
+        }
+
+        if (this.lungeCooldownTimer > 0) {
+            this.lungeCooldownTimer--;
+            this.velocity.x = 0;
+            this.sprite.setAnimation("Idle");
+            return;
+        }
+
+        if (this.state === "idle") {
+            this.velocity.x = 0;
+            if (distance <= this.detectionRange) {
+                this.state = "lunging";
+                this.lungeTimer = this.lungeDuration;
+                const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+                this.velocity.x = (dx / norm) * this.lungeSpeed;
+                this.velocity.y = this.jumpForce;
+                this.sprite.setAnimation("Attack");
+            }
+        } else if (this.state === "lunging") {
+            this.lungeTimer--;
+            if (this.lungeTimer <= 0) {
+                this.state = "idle";
+                this.lungeCooldownTimer = this.lungeCooldownDuration;
+                this.velocity.x = 0;
+                this.sprite.setAnimation("Idle");
+            }
+        }
+    }
+
+    draw(context) {
+        super.draw(context);
+        this.sprite.draw(context, this.x, this.y);
+    }
+}
+
+
+
+class DemonEnemy extends Enemy {
+    constructor(x, y, entities, framesAlive=100000000000000000000000) {
+        super(x, y, 8, 8, 150);
+        this.speed = 0.125;
+        this.direction = 1;
+
+
+        // frames per animation frame
+        this.animationSpeed = 10;
+        this.sprite = new AnimatedSprite(Loader.spriteSheets.Demon, "Attack", this.animationSpeed);
+
+        this.amountOfTimeToWait = 90;
+        this.waitTimer = new Clock();
+        this.waitTimer.add(this.amountOfTimeToWait * 2);
+
+
+        this.aliveClock = new Clock();
+        this.framesAlive = framesAlive;
+
+
+    }
+
+    update(map, entities) {
+        super.update(map, entities);
+
+        if(this.aliveClock.getTime() > this.framesAlive) {
+            this.collidesWithMap = false;
+            setFrameTimeout(() => {
+                this.removeFromScene = true;
+            }
+            , 120);
+        }
+
+
+        // if distance to player is less than 100, then
+        let player = currentScene.player;
+        this.direction = player.x > this.x ? 1 : -1;
+        this.sprite.direction = this.direction;
+        const dx = player.x + player.width/2 - this.x;
+        const dy = player.y + player.height/2 - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+
+        if(distance < 80) {
+            if(this.rightHit || this.leftHit) {
+                this.direction *= -1;
+                this.x += this.direction;
+            }
+
+            this.velocity.x = this.speed * this.direction;
+            this.sprite.direction = this.direction;
+            this.sprite.setAnimation("Attack");
+
+            this.sprite.onAnimationComplete = () => {
+                // spawn OrbEnemy with velocity towards player using trig
+                const orb = new OrbEnemy(this.x + this.width / 2, this.y - this.height / 2);
+                orb.velocity.x = (dx / distance) * 2;
+                orb.velocity.y = (dy / distance) * 2;
+                // reduce the speed of the orb to 0.5
+                orb.velocity.x *= 0.5;
+                orb.velocity.y *= 0.5;
+                currentScene.addEntity(orb);
+            }
+
+
+            // if the point to the down and right or left and down is empty, turn around since it's about to fall off
+            if(!map.pointIsCollidingWithWall(this.x + this.width + 1, this.y + this.height + 1)
+            || !map.pointIsCollidingWithWall(this.x - 1, this.y + this.height + 1)) {
+                this.direction *= -1;
+
+                this.waitTimer.restart();
+                this.x += this.direction;
+            }
+        } else {
+            this.velocity.x = 0;
+            this.sprite.setAnimation("Default");
+
+            this.sprite.onAnimationComplete = () => {};
+
+        }
+
+
+
+
+    }
+
+    draw(context) {
+        super.draw(context);
+        this.sprite.draw(context, this.x, this.y);
+    }
+
+}
+
+class OrbEnemy extends Enemy {
+    constructor(x, y) {
+        super(x, y, 4, 4, 50);
+        this.collidesWithMap = false;
+        this.gravity = 0;
+        this.defaultGravity = 0;
+    }
+
+    update(map, entities) {
+        super.update(map, entities);
+
+        this.velocity.x *= 0.99; // slow down over time
+        this.velocity.y *= 0.99; // slow down over time
+
+        if(Math.abs(this.velocity.x) < 0.01 && Math.abs(this.velocity.y) < 0.01) {
+            this.removeFromScene = true;
+        }
+        
+    }
+
+    draw(context) {
+        super.draw(context);
+        context.beginPath();
+        context.arc(this.x + this.width / 2 - context.view.x, this.y + this.height / 2 - context.view.y, this.width / 2, 0, Math.PI * 2);
+        context.fillStyle = "purple";
+        context.fill();
+    }
+}
+
+
+
+
+
 
 
 // // TurtleTadpoleEnemy.js

@@ -320,9 +320,14 @@ document.body.onload = () => {
 
             'assets/images/enemies/fly.json',
             'assets/images/enemies/spirit_walker.json',
+            'assets/images/enemies/Demon.json',
+            'assets/images/enemies/Hades.json',
+            'assets/images/enemies/Harpy.json',
+            'assets/images/enemies/Hellhound.json',
 
             'assets/images/enemies/Charon.json',
             'assets/images/enemies/waterfall.json',
+            
 
 
             'tiled/GameJamSpriteSheet.tsx',

@@ -266,10 +266,14 @@ class Player extends Entity {
 
     handleOffMap(map) {
         if(this.y > map.height * map.tileheight - 6) {
+            this.sprite.setAnimation("Idle");
+            if(this.lives > 0) {
+                this.x = this.lastGroundedPositions[0].x;
+                this.y = this.lastGroundedPositions[0].y;
+            }
             this.takeDamage(10);
             currentScene.freezeFrame(60);
-            this.x = this.lastGroundedPositions[0].x;
-            this.y = this.lastGroundedPositions[0].y;
+
             this.velocity.x = 0;
             this.velocity.y = 0;
             

@@ -1,17 +1,8 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
-    "activeFile": "levels/styx_level.tmx",
-    "expandedProjectPaths": [
-        "levels",
-        "."
-    ],
     "fileStates": {
         "GameJamSpriteSheet.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 8,
+            "scaleInDock": 5.5,
             "scaleInEditor": 5.5
         },
         "complete-tileset.tsx": {
@@ -32,6 +23,18 @@
             "viewCenter": {
                 "x": 89.25,
                 "y": 127.25
+            }
+        },
+        "levels/charon.tmx": {
+            "expandedObjectLayers": [
+                7,
+                9
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 105,
+                "y": 108.16666666666669
             }
         },
         "levels/level_1.tmx": {
@@ -233,14 +236,22 @@
                 9
             ],
             "scale": 1.5,
-            "selectedLayer": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 2490,
-                "y": 136.99999999999997
+                "x": 1627.6666666666665,
+                "y": 108.33333333333331
             }
         },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
+        },
+        "levels/underworld_level.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 573,
+                "y": 537
+            }
         },
         "tower-tileset.tsx": {
             "dynamicWrapping": true,
@@ -248,30 +259,11 @@
             "scaleInEditor": 5.5
         }
     },
-    "last.externalTilesetPath": "C:/Users/froth/.vscode/projects/Crate Metroidvania Game/assets/images/tiled",
-    "last.imagePath": "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled",
-    "last.worldFilePath": "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels",
-    "loadedWorlds": [
-        "C:/Users/froth/Documents/GitHub/EPX-Jam-2025/EXP-Jam-2025/tiled/levels/game_world.world"
-    ],
-    "map.height": 22,
-    "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 8,
-    "map.tileWidth": 8,
-    "map.width": 30,
-    "openFiles": [
-        "GameJamSpriteSheet.tsx",
-        "levels/styx_level.tmx",
-        "levels/charon.tmx",
-        "levels/underworld_level.tmx",
-        "levels/styx_level.tmx"
-    ],
-    "project": "untitled.tiled-project",
     "recentFiles": [
-        "GameJamSpriteSheet.tsx",
-        "levels/styx_level.tmx",
         "levels/charon.tmx",
+        "levels/styx_level.tmx",
         "levels/underworld_level.tmx",
+        "GameJamSpriteSheet.tsx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
         "levels/level_run_2.tmx",
@@ -280,10 +272,5 @@
         "levels/level_3-5.tmx",
         "levels/level_1.tmx",
         "levels/level_8.tmx"
-    ],
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.tileSize": {
-        "height": 8,
-        "width": 8
-    }
+    ]
 }

@@ -2,7 +2,7 @@
 class CharonEnemy extends Boss {
     constructor(x, y, entities, options = {}) {
         // super(x, y, 32, 24, 7200);
-        super(x, y, 32, 24, 5400);
+        super(x, y, 32, 24, 1000);
 
 
         this.speed = 1;
@@ -30,14 +30,14 @@ class CharonEnemy extends Boss {
 
 
         this.stageThresholds = [
-            { health: this.maxHealth * 2 / 3, stage: 2 },
-            { health: this.maxHealth * 1 / 3, stage: 3 },
+            { health: this.maxHealth * 1 / 2, stage: 2 },
+            { health: this.maxHealth * 1 / 4, stage: 3 },
             { health: 1, stage: 4 }
         ];
 
 
         this.pauseMovingTimer = new Clock();
-        this.timeToPauseMoving = 240;
+        this.timeToPauseMoving = 400;
 
         this.moving = true;
         this.movementFrameCounter = 0;
@@ -177,8 +177,8 @@ class CharonEnemy extends Boss {
                 this.direction = -1;
                 this.sprite.direction = this.direction;
 
-                
-                urrentScene.startDialogue(
+                currentScene.player.lives = 3;
+                currentScene.startDialogue(
                     "Very well, you are strong of will. Even so I must take a toll..."
                   );
           

@@ -8,7 +8,7 @@ class MenuScene extends Scene {
 
         // this.backgroundSprite = new Sprite(Loader.images['EchoesOfTheRiddleLords.png'], WIDTH, HEIGHT);
 
-        this.menuOptions = ['Quick Play', 'Level Select'];
+        this.menuOptions = ['Story Mode', 'Level Select'];
         this.options = this.menuOptions;
         this.levelSelectOptions = CONSTANTS.levels;
 

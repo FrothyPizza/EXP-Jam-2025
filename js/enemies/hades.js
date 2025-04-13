@@ -2,7 +2,7 @@
 class HadesEnemy extends Boss {
     constructor(x, y, entities, options = {}) {
         // super(x, y, 32, 24, 7200);
-        super(x, y, 32, 24, 7200);
+        super(x, y, 32, 24, 4000);
 
         this.hurtboxes = [{ x: 7, y: 5, w: this.width - 5, h: this.height - 7 }];
 
@@ -86,6 +86,12 @@ class HadesEnemy extends Boss {
                     // this.advanceStage();
                     this.health -= 1;
                     this.sprite.paused = false;
+
+                    currentScene.player.maxLives--;
+                    currentScene.player.lives--;
+                    console.log("Player health: " + currentScene.player.health);
+
+                    this.sprite.onAnimationComplete = () => {};
                 }, 60);
             };
 
@@ -147,7 +153,7 @@ class HadesEnemy extends Boss {
                     this.state = "Idle";
                 }
 
-                if(APP_ELAPSED_FRAMES % 18 === 0) {
+                if(APP_ELAPSED_FRAMES % 20 === 0) {
                     this.spawnOrb(this.width/2, this.height - 8, 0, 2);
                     this.spawnOrb(this.width/2, this.height - 8, 0.1, 2);
                     this.spawnOrb(this.width/2, this.height - 8, -0.1, 2);
@@ -165,25 +171,37 @@ class HadesEnemy extends Boss {
             case "BeamAttack":
                 this.sprite.setAnimation("Beam");
                 this.sprite.direction = -1;
-                this.shootingBeam = true;
-                // add a hurtbox to represent the beam
-                if(this.hurtboxes.length < 2) {
-                    this.hurtboxes.push({x: 0, y: this.y + this.height/2, w: this.x, h: 4});
-                }
-                this.hurtboxes[1].x = 0;
-                this.hurtboxes[1].y = this.y + this.height/2;
-                this.hurtboxes[1].w = this.x;
-                this.hurtboxes[1].h = 4;
-
-                console.log(this.hurtboxes);
 
                 this.glideToRelativeLocation(220, 160);
+
+                if(APP_ELAPSED_FRAMES % 12 === 0) {
+                    this.spawnOrb(2, this.height/2, -2, 0.5);
+                }
+
                 if(this.velocity.x === 0 && this.velocity.y === 0) { // then we've made it to the target location
                     this.state = "Idle";
-                    this.sprite.paused = false;
-                    this.shootingBeam = false;
-                    this.hurtboxes.pop(); // remove the beam hurtbox
                 }
+
+
+                // this.sprite.direction = -1;
+                // this.shootingBeam = true;
+                // // add a hurtbox to represent the beam
+                // if(this.hurtboxes.length < 2) {
+                //     this.hurtboxes.push({x: 0, y: this.y + this.height/2, w: this.x, h: 4});
+                // }
+                // this.hurtboxes[1].x = -this.x;
+                // this.hurtboxes[1].y = this.y + this.height/2;
+                // this.hurtboxes[1].w = this.x;
+                // this.hurtboxes[1].h = 4;
+
+
+                // this.glideToRelativeLocation(220, 160);
+                // if(this.velocity.x === 0 && this.velocity.y === 0) { // then we've made it to the target location
+                //     this.state = "Idle";
+                //     this.sprite.paused = false;
+                //     this.shootingBeam = false;
+                //     this.hurtboxes.pop(); // remove the beam hurtbox
+                // }
                 break;
             default:
                 break;
@@ -217,7 +235,7 @@ class HadesEnemy extends Boss {
 
     stage4Behavior(map, entities) {
         
-    
+        this.startFade(60, 60);
 
 
     }
@@ -265,13 +283,13 @@ class HadesEnemy extends Boss {
         this.sprite.draw(context, this.x, this.y);
 
 
-        if(this.shootingBeam) {
-            // draw purple beam from left side of screen to this.x - this.width
-            context.fillStyle = "rgba(255, 0, 255, 0.5)";
-            context.fillRect(0, this.y - context.view.y + this.height/2, this.x, 4);
+        // if(this.shootingBeam) {
+        //     // draw purple beam from left side of screen to this.x - this.width
+        //     context.fillStyle = "rgba(255, 0, 255, 0.5)";
+        //     context.fillRect(0, this.y - context.view.y + this.height/2, this.x, 4);
 
 
-        }
+        // }
     }
 }
 

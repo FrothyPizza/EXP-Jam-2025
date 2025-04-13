@@ -251,11 +251,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 3,
+            "scale": 0.125,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2055.6666666666665,
-                "y": 72.49999999999999
+                "x": 1656,
+                "y": -1940
             }
         },
         "levels/tower-tileset.tsx": {

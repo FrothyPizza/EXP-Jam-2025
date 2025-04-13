@@ -128,6 +128,8 @@ class HellhoundEnemy extends Enemy {
                 this.velocity.x = (dx / norm) * this.lungeSpeed;
                 this.velocity.y = this.jumpForce;
                 this.sprite.setAnimation("Attack");
+
+                Loader.playSound("DogBarkDash.wav", 0.2);
             }
         } else if (this.state === "lunging") {
             this.lungeTimer--;
@@ -210,6 +212,8 @@ class DemonEnemy extends Enemy {
                 orb.velocity.x *= 0.5;
                 orb.velocity.y *= 0.5;
                 currentScene.addEntity(orb);
+
+                Loader.playSound("ghost summon 2.wav", 0.1);
             }
 
 

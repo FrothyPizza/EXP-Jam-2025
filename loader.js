@@ -31,7 +31,7 @@ const Loader = {
             } else if (ext === 'ttf') {
                 console.log("Loading font: " + src);
                 promises.push(this.loadFont(src));
-            } else if (ext === 'wav' || ext === 'mp3') {
+            } else if (ext === 'wav' || ext === 'mp3' || ext === 'm4a') {
                 promises.push(this.loadAudio(src));
             }
         }
@@ -327,7 +327,7 @@ document.body.onload = () => {
 
             'assets/images/enemies/Charon.json',
             'assets/images/enemies/waterfall.json',
-            
+
 
 
             'tiled/GameJamSpriteSheet.tsx',
@@ -352,6 +352,16 @@ document.body.onload = () => {
             'assets/sfx/sam/powerup.wav',
             'assets/sfx/sam/dash01.wav',
             'assets/sfx/turtle_laser.wav',
+
+
+            'assets/sfx/DogBarkDash.wav',
+            'assets/sfx/EvilLaugh.wav',
+            'assets/sfx/fistSlam1.wav',
+            'assets/sfx/fistSlam2.wav',
+            'assets/sfx/ghost summon 2.wav',
+            'assets/sfx/ghost summon1.wav',
+            'assets/sfx/Slash.wav',
+            'assets/sfx/Wing flap (3).wav',
 
 
 

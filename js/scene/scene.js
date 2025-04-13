@@ -14,6 +14,34 @@ class Scene {
         this.offScreenCanvas.width = this.charWidth;
         this.offScreenCanvas.height = this.charHeight;
         this.offScreenContext = this.offScreenCanvas.getContext('2d');
+
+        this.fadeFrame = 0;
+        this.isFading = false;
+        this.fadeDuration = 60; // Duration of fade in frames
+        this.timeToStayFullyFaded = 0; // Time to stay fully faded in frames
+
+    }
+
+
+
+    startFade(fadeDuration, timeToStayFullyFaded) {
+        this.isFading = true;
+        this.fadeFrame = 0;
+        this.fadeDuration = fadeDuration || this.fadeDuration;
+        this.timeToStayFullyFaded = timeToStayFullyFaded || this.timeToStayFullyFaded;
+    }
+
+
+    drawFade(context) {
+        if (this.isFading) {
+            this.fadeFrame++;
+            const alpha = this.fadeFrame / this.fadeDuration;
+            context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+            if (this.fadeFrame >= this.fadeDuration + this.timeToStayFullyFaded) {
+                this.isFading = false;
+            }
+        }
     }
 
 

@@ -295,6 +295,12 @@ class Player extends Entity {
 
             }
         }
+        if(other instanceof LevelCompleteArea) {
+            if(this.colliding(other)) {
+                currentScene.completeScene();
+            }
+        }
+
         if(other.isEnemy || (other instanceof Collider && other.damagesPlayer)) {
             if(this.colliding(other) && !this.isInvincible && !this.dead) {
                 this.framesCollindingWithEnemy++;

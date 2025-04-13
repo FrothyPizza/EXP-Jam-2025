@@ -187,19 +187,24 @@ class CharonEnemy extends Boss {
                     this.direction = -1;
 
                     Loader.playSound("unicyclist_death.wav", 0.5);
-
+                    CONSTANTS.playerMaxLives = 2;
+                    currentScene.player.maxLives = 2;
+                    setFrameTimeout(() => {
+                        currentScene.player.lives = 2;
+                    }, 20);
 
                     this.sprite.onAnimationComplete = () => {
-                        CONSTANTS.playerMaxLives = 2;
-                        currentScene.player.maxLives = 2;
-                        currentScene.player.lives = 2;
-
+                        
                         currentScene.startDialogue("Now... GO!");
                         this.sprite.setAnimation("Idle");
                         this.sprite.onAnimationComplete = null;
+
                         setFrameTimeout(() => {
-                            loadScene("underworld_level");
-                            
+                            currentScene.startFade(60, 120);
+                            setFrameTimeout(() => {
+                                loadScene("underworld_level");
+                            }, 120);
+
                         }, 60);
                     }
 

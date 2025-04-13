@@ -45,6 +45,20 @@ class LevelScene extends Scene {
         this.previousPauseInput = false;
     }
 
+
+    completeScene() {
+        if(this.sceneComplete) return;
+        this.sceneComplete = true;
+        // find index of this scene in the scenes array
+        const index = CONSTANTS.levels.findIndex((scene) => scene === this.levelName);
+        this.startFade(60, 60);
+        setFrameTimeout(() => {
+            loadScene(CONSTANTS.levels[index + 1]);
+
+        }, 120);
+
+    }
+
     loadEntities() {
         if(!this.map) return;
 
@@ -259,6 +273,9 @@ class LevelScene extends Scene {
                 this.playerLivesSprite.draw(context, livesX + i * 10 + context.view.x, livesY + context.view.y);
             }
         }
+
+
+        this.drawFade(context);
 
 
 

@@ -2,7 +2,7 @@
 class CharonEnemy extends Boss {
     constructor(x, y, entities, options = {}) {
         // super(x, y, 32, 24, 7200);
-        super(x, y, 32, 24, 600);
+        super(x, y, 32, 24, 7200);
 
 
         this.speed = 1;

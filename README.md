@@ -2,8 +2,7 @@
 [Play on Itch.io](https://frothy-pizza.itch.io/theos-journey)
 
 **Lead Developer**: Hal Seamans  
-**Award**: 🏆 1st Place – University Game Jam 2025  
-**Judged by**: Senior Producer, Epic Games  
+**Award**: 1st Place – University of Iowa EPX Studios Game Jam 2025  
 
 ---
 

@@ -3,7 +3,7 @@
 const CONSTANTS = {
     VERSION: '0.0.1',
 
-    levels: ['styx_level', 'charon', 'underworld_level'],
+    levels: ['styx_level', 'charon', 'underworld_level', 'harpy', 'hades'],
     playerMaxLives: 3,
 
     level_info: {
@@ -17,6 +17,14 @@ const CONSTANTS = {
             timeStarCutoffs: [90, 120, 180], 
         },
         'underworld_level': {
+            music: {name: 'River Styx.mp3', volume: 0.3},   
+            timeStarCutoffs: [90, 120, 180], 
+        },
+        'hades': {
+            music: {name: 'River Styx.mp3', volume: 0.3},   
+            timeStarCutoffs: [90, 120, 180], 
+        },
+        'harpy': {
             music: {name: 'River Styx.mp3', volume: 0.3},   
             timeStarCutoffs: [90, 120, 180], 
         },

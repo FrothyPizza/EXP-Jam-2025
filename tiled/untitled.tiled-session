@@ -1,4 +1,9 @@
 {
+    "activeFile": "levels/styx_level.tmx",
+    "expandedProjectPaths": [
+        "levels",
+        "."
+    ],
     "fileStates": {
         "GameJamSpriteSheet.tsx": {
             "dynamicWrapping": false,
@@ -30,16 +35,11 @@
                 7,
                 9
             ],
-            "scale": 4,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-<<<<<<< Updated upstream
-                "x": 105,
+                "x": 104.66666666666667,
                 "y": 108.16666666666669
-=======
-                "x": 108.375,
-                "y": 100.125
->>>>>>> Stashed changes
             }
         },
         "levels/level_1.tmx": {
@@ -264,25 +264,12 @@
             "scaleInEditor": 5.5
         }
     },
-    "recentFiles": [
-<<<<<<< Updated upstream
-        "levels/charon.tmx",
-        "levels/styx_level.tmx",
-        "levels/underworld_level.tmx",
-        "GameJamSpriteSheet.tsx",
-=======
-        "levels/underworld_level.tmx",
+    "openFiles": [
         "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
         "levels/charon.tmx",
->>>>>>> Stashed changes
-        "levels/level_7.tmx",
-        "levels/level_run_1.tmx",
-        "levels/level_run_2.tmx",
-        "tower-tileset.tsx",
-        "levels/level_blank.tmx",
-        "levels/level_3-5.tmx",
-        "levels/level_1.tmx",
-        "levels/level_8.tmx"
-    ]
+        "levels/underworld_level.tmx",
+        "levels/styx_level.tmx"
+    ],
+    "project": "untitled.tiled-project"
 }

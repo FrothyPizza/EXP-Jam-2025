@@ -322,6 +322,7 @@ document.body.onload = () => {
             'assets/images/enemies/spirit_walker.json',
 
             'assets/images/enemies/Charon.json',
+            'assets/images/enemies/waterfall.json',
 
 
             'tiled/GameJamSpriteSheet.tsx',
@@ -333,6 +334,7 @@ document.body.onload = () => {
 
             'assets/music/River Styx.mp3',
             'assets/music/Charon-Boss Fight.mp3',
+
 
 
 

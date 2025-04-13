@@ -2,7 +2,7 @@
 
 // Enemy that runs back and forth from edge to edge
 class SpiritWalkerEnemy extends Enemy {
-    constructor(x, y) {
+    constructor(x, y, entities, framesAlive=10000000000000000) {
         super(x, y, 8, 8, 150);
         this.speed = 0.3333333333333;
         this.direction = 1;
@@ -17,12 +17,23 @@ class SpiritWalkerEnemy extends Enemy {
         this.waitTimer.add(this.amountOfTimeToWait * 2);
 
 
+        this.aliveClock = new Clock();
+        this.framesAlive = framesAlive;
+
+        console.log("frames alive: " + this.framesAlive);
 
     }
 
     update(map, entities) {
         super.update(map, entities);
 
+        if(this.aliveClock.getTime() > this.framesAlive) {
+            this.collidesWithMap = false;
+            setFrameTimeout(() => {
+                this.removeFromScene = true;
+            }
+            , 120);
+        }
 
         if(this.rightHit || this.leftHit) {
             this.direction *= -1;

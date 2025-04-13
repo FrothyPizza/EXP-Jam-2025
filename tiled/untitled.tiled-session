@@ -30,6 +30,22 @@
                 "y": 127.25
             }
         },
+        "levels/hades.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 112,
+                "y": 90.75
+            }
+        },
+        "levels/harpy.tmx": {
+            "scale": 0.43408203125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 9.214848143982067,
+                "y": 88.69291338582673
+            }
+        },
         "levels/level_1.tmx": {
             "expandedObjectLayers": [
                 10,
@@ -227,22 +243,22 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 11,
+            "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 776.4545454545455,
-                "y": 71.5
+                "x": 1950,
+                "y": 131.5
             }
         },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
         },
         "levels/underworld_level.tmx": {
-            "scale": 3,
+            "scale": 0.75,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 227.33333333333331,
-                "y": 150.16666666666669
+                "x": 432,
+                "y": 35.33333333333326
             }
         },
         "tower-tileset.tsx": {

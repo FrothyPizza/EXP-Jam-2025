@@ -42,6 +42,14 @@
                 "y": 108.16666666666669
             }
         },
+        "levels/hades.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": -1974,
+                "y": 171
+            }
+        },
         "levels/level_1.tmx": {
             "expandedObjectLayers": [
                 10,
@@ -240,11 +248,11 @@
                 7,
                 9
             ],
-            "scale": 1.5,
-            "selectedLayer": 6,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1627.6666666666665,
-                "y": 108.33333333333331
+                "x": 205,
+                "y": 101.49999999999999
             }
         },
         "levels/tower-tileset.tsx": {
@@ -271,5 +279,19 @@
         "levels/underworld_level.tmx",
         "levels/styx_level.tmx"
     ],
-    "project": "untitled.tiled-project"
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "levels/charon.tmx",
+        "levels/styx_level.tmx",
+        "levels/underworld_level.tmx",
+        "GameJamSpriteSheet.tsx",
+        "levels/level_7.tmx",
+        "levels/level_run_1.tmx",
+        "levels/level_run_2.tmx",
+        "tower-tileset.tsx",
+        "levels/level_blank.tmx",
+        "levels/level_3-5.tmx",
+        "levels/level_1.tmx",
+        "levels/level_8.tmx"
+    ]
 }

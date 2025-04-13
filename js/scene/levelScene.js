@@ -7,6 +7,7 @@ class LevelScene extends Scene {
         this.levelName = levelName;
         this.map = Loader.levels[levelName];
         this.entities = [];
+        this.precedentSprites = [];
         this.player = null;
         // this.playerLives = playerLives == undefined ? 3 : playerLives;
         this.loadEntities();
@@ -150,6 +151,13 @@ class LevelScene extends Scene {
             if((Inputs.enter || Inputs.shoot || Inputs.jump || Inputs.dash || Inputs.left || Inputs.right || Inputs.up || Inputs.down) && this.isTextFullyDisplayed && this.isTextActive) {
                 this.isTextActive = false;
             }   
+
+            // "Pause" all frame timeouts
+            for(let i = 0; i < queuedFrameTimeouts.length; i++) {
+                let timeout = queuedFrameTimeouts[i];
+                timeout.startTime++;
+            }
+
             return;
         }
 
@@ -215,6 +223,12 @@ class LevelScene extends Scene {
     }
 
     draw(context) {
+        // Draw precedent sprites
+        for (let sprite of this.precedentSprites) {
+            sprite.draw(context, sprite.x, sprite.y);
+        }
+        
+
         // Draw the map
         this.map.draw(context);
 

@@ -1,7 +1,9 @@
 
 class CharonEnemy extends Boss {
     constructor(x, y, entities, options = {}) {
-        super(x, y, 32, 24, 2000);
+        // super(x, y, 32, 24, 7200);
+        super(x, y, 32, 24, 600);
+
 
         this.speed = 1;
         this.direction = 1;
@@ -18,9 +20,19 @@ class CharonEnemy extends Boss {
         this.sprite.direction = this.direction;
 
 
+        this.waterfallBackgroundSprite = new AnimatedSprite(Loader.spriteSheets.waterfall_background, "Idle", this.animationSpeed);
+        this.waterfallBackgroundSprite.x = 0;
+        this.waterfallBackgroundSprite.y = 0;
+        setFrameTimeout(() => {
+            currentScene.precedentSprites.push(this.waterfallBackgroundSprite);
+        }, 2);
+
+
+
         this.stageThresholds = [
             { health: this.maxHealth * 2 / 3, stage: 2 },
-            { health: this.maxHealth / 3, stage: 3 }
+            { health: this.maxHealth * 1 / 3, stage: 3 },
+            { health: 1, stage: 4 }
         ];
 
 
@@ -32,6 +44,9 @@ class CharonEnemy extends Boss {
 
         this.enemiesToSpawn = 3;
 
+
+        this.hasReachedEnd = false;
+
     }
 
     update(map, entities) {
@@ -39,12 +54,12 @@ class CharonEnemy extends Boss {
 
         this.sprite.direction = this.direction;
 
-        this.health -= 1; // lose 1 health every frame
         console.log(this.health);
         
     }
 
     stage1Behavior(map, entities) {
+        this.health -= 1; // lose 1 health every frame
 
         if (this.pauseMovingTimer.getTime() > this.timeToPauseMoving) {
             this.pauseMovingTimer.restart();
@@ -52,23 +67,31 @@ class CharonEnemy extends Boss {
             this.moving = false;
             this.sprite.setAnimation("Swing");
             this.enemiesToSpawn = 3;
+            if(this.currentStage === 3) {
+                this.enemiesToSpawn = 3;
+            }
 
             // choose random 0 or 1
             let random = Math.floor(Math.random() * 2);
             if(random === 0) {
                 this.enemiesToSpawn = 6;
+                if(this.waterfallEnemy)
+                    this.waterfallEnemy.disabled = true;
             }
+
+            
+
 
 
             this.sprite.onAnimationComplete = () => {
                 this.enemiesToSpawn--;
 
                 if(random === 0) {
+                    
                     this.spawnRotatingSpiritEnemy(entities);
-                    if(this.waterfallEnemy)
-                        this.waterfallEnemy.disabled = true;
                 } else {
                     currentScene.addEntity(new SpiritWalkerEnemy(this.x + this.width/2, this.y + this.height/2, entities, 20*60));
+                    Loader.playSound("ghost summon 2.wav", 0.2);
                 }
 
 
@@ -83,7 +106,7 @@ class CharonEnemy extends Boss {
             
         }
         if(this.moving) {
-            let { x, y } = this.getPositionFig8(this.movementFrameCounter/100);
+            let { x, y } = this.getPositionFig8(this.movementFrameCounter/(100)*this.speed);
             this.direction = this.x < x ? 1 : -1;
             this.x = x;
             this.y = y;
@@ -111,19 +134,89 @@ class CharonEnemy extends Boss {
     }
 
     spawnRotatingSpiritEnemy(entities) {
-        let player = currentScene.player;
-        let playerX = player.x + player.width/2;
-        let playerY = player.y + player.height/2;
-        let angle = Math.atan2(playerY - this.y, playerX - this.x);
-        let spawnX = this.x + Math.cos(angle) * 20;
-        let spawnY = this.y + Math.sin(angle) * 20;
-        let enemy = new RotatingSpiritEnemy(spawnX, spawnY);
-        enemy.direction = this.direction;
-        // enemy should move towards the player
-        enemy.velocity.x = Math.cos(angle) * enemy.speed;
-        enemy.velocity.y = Math.sin(angle) * enemy.speed;
+        Loader.playSound("ghost summon 2.wav", 0.2);
 
-        currentScene.addEntity(enemy);
+        let count = 1;
+        if(this.currentStage === 3) {
+            count = 3;
+        }
+
+        for(let i = 0; i < count; i++) {
+            let player = currentScene.player;
+            let playerX = player.x + player.width/2;
+            let playerY = player.y + player.height/2;
+            let angle;
+            if(i == 0)
+                angle = Math.atan2(playerY - this.y, playerX - this.x);
+            if(i == 1)
+                angle = Math.atan2(playerY - this.y, playerX - this.x) + Math.PI/8;
+            if(i == 2)
+                angle = Math.atan2(playerY - this.y, playerX - this.x) - Math.PI/8;
+            let spawnX = this.x + Math.cos(angle) * 20;
+            let spawnY = this.y + Math.sin(angle) * 20;
+            let enemy = new RotatingSpiritEnemy(spawnX, spawnY);
+            enemy.direction = this.direction;
+            // enemy should move towards the player
+            enemy.velocity.x = Math.cos(angle) * enemy.speed;
+            enemy.velocity.y = Math.sin(angle) * enemy.speed;
+
+            currentScene.addEntity(enemy);
+        }
+    }
+
+
+    stage4Behavior(map, entities) {
+        let target = { x: 16, y: -4 };
+        let distance = Math.sqrt(Math.pow(target.x - this.x, 2) + Math.pow(target.y - this.y, 2));
+
+        if(!this.hasReachedEnd) {
+            if(distance < 2) {
+                this.hasReachedEnd = true;
+                this.velocity.x = 0;
+                this.velocity.y = 0;
+                this.direction = -1;
+                this.sprite.direction = this.direction;
+
+                
+                currentScene.startDialogue("You have done well to make it this far, young spartan of the living. However, due to the annoyance you have caused me, I require PAYMENT");
+
+                setFrameTimeout(() => {
+                    this.sprite.setAnimation("Defeated");
+                    this.velocity.x = 0;
+                    this.velocity.y = 0;
+                    this.direction = -1;
+
+                    Loader.playSound("unicyclist_death.wav", 0.5);
+
+
+                    this.sprite.onAnimationComplete = () => {
+                        CONSTANTS.playerMaxLives = 2;
+                        currentScene.player.maxLives = 2;
+                        currentScene.player.lives = 2;
+
+                        currentScene.startDialogue("Now... GO!");
+                        this.sprite.setAnimation("Idle");
+                        this.sprite.onAnimationComplete = null;
+                        setFrameTimeout(() => {
+                            loadScene("underworld_level");
+                            
+                        }, 60);
+                    }
+
+        
+                }, 60);
+
+            } else {
+                // glide towards top of screen
+                let angle = Math.atan2(target.y - this.y, target.x - this.x);
+                this.velocity.x = Math.cos(angle) * this.speed;
+                this.velocity.y = Math.sin(angle) * this.speed;
+                
+                // if distance to target is less than 2, stop moving
+            }
+        }
+
+
     }
 
 
@@ -172,14 +265,32 @@ class CharonEnemy extends Boss {
         switch (this.currentStage) {
             case 1:
                 console.log("Stage 1");
+                Loader.playSound("EvilLaugh.wav", 0.3);
                 break;
             case 2:
                 console.log("Stage 2");
+                Loader.playSound("EvilLaugh.wav", 0.2);
                 this.waterfallEnemy = new WaterfallEnemy(this.x, this.y, currentScene.entities);
                 currentScene.addEntity(this.waterfallEnemy);
                 break;
             case 3:
                 console.log("Stage 3");
+                Loader.playSound("EvilLaugh.wav", 0.3);
+                
+                break;
+
+            case 4:
+                console.log("Stage 4");
+
+                Loader.playSound("EvilLaugh.wav", 0.5);
+                Loader.setCurrentMusicVolume(0);
+                this.waterfallEnemy.disabled = true;
+                // remove all enemies from the scene
+                currentScene.entities.forEach((entity) => {
+                    if(entity instanceof Enemy && !(entity instanceof CharonEnemy)) {
+                        entity.removeFromScene = true;
+                    }
+                });
                 break;
             default:
                 break;
@@ -189,6 +300,10 @@ class CharonEnemy extends Boss {
     draw(context) {
         super.draw(context);
         this.sprite.draw(context, this.x, this.y);
+
+        // given the height of the map is 128, and the starting y is 16, move the waterfall background sprite down as the boss health decreases
+        let waterfallY = (this.maxHealth - this.health) / this.maxHealth * 128;
+        this.waterfallBackgroundSprite.y = waterfallY + 16;
     }
 }
 

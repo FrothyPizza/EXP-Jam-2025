@@ -73,6 +73,9 @@ class Boss extends Enemy {
             case 3:
                 this.stage3Behavior(map, entities);
                 break;
+            case 4:
+                this.stage4Behavior(map, entities);
+                break;
             default:
                 break;
         }
@@ -93,6 +96,10 @@ class Boss extends Enemy {
     }
 
     stage3Behavior(map, entities) {
+        // Implement in subclass
+    }
+
+    stage4Behavior(map, entities) {
         // Implement in subclass
     }
 

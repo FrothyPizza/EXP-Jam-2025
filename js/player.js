@@ -8,7 +8,7 @@ class Player extends Entity {
         this.animationSpeed = 10;
         this.sprite = new AnimatedSprite(Loader.spriteSheets.Theo, "Run", this.animationSpeed);
 
-        this.maxLives = 3;
+        this.maxLives = CONSTANTS.playerMaxLives;
         this.lives = this.maxLives;
 
 

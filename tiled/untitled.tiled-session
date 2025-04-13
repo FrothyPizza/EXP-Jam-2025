@@ -42,7 +42,7 @@
             "scale": 0.43408203125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 9.214848143982067,
+                "x": 6.911136107986522,
                 "y": 88.69291338582673
             }
         },
@@ -243,11 +243,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 0.5,
-            "selectedLayer": 6,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1876,
-                "y": 209
+                "x": 2055.6666666666665,
+                "y": 72.49999999999999
             }
         },
         "levels/tower-tileset.tsx": {
@@ -257,11 +257,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 1.5,
+            "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 650.6666666666666,
-                "y": 209.66666666666663
+                "x": 656,
+                "y": 247.33333333333326
             }
         },
         "tower-tileset.tsx": {

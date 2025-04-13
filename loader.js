@@ -329,7 +329,7 @@ document.body.onload = () => {
             'assets/images/enemies/spirit_walker.json',
             'assets/images/enemies/Charon.json',
             'assets/images/enemies/waterfall.json',
-
+            'assets/images/enemies/waterfall_background.json',
 
 
             'tiled/GameJamSpriteSheet.tsx',
@@ -366,7 +366,7 @@ document.body.onload = () => {
             'assets/sfx/ghost summon1.wav',
             'assets/sfx/Slash.wav',
             'assets/sfx/Wing flap (3).wav',
-
+            'assets/sfx/unicyclist_death.wav',
 
 
             

@@ -243,22 +243,25 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 1950,
-                "y": 131.5
+                "x": 1876,
+                "y": 209
             }
         },
         "levels/tower-tileset.tsx": {
             "scaleInDock": 1
         },
         "levels/underworld_level.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 432,
-                "y": 35.33333333333326
+                "x": 650.6666666666666,
+                "y": 209.66666666666663
             }
         },
         "tower-tileset.tsx": {
@@ -276,9 +279,9 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "levels/styx_level.tmx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
-        "levels/styx_level.tmx",
         "GameJamSpriteSheet.tsx",
         "levels/level_run_2.tmx",
         "tower-tileset.tsx",

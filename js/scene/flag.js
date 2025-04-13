@@ -2,9 +2,9 @@
 
 class Flag extends Entity {
     constructor(x, y) {
-        super(x, 0, 8, 8);
+        super(x, y, 8, 16);
 
-        this.sprite = new AnimatedSprite(Loader.spriteSheets.flag, "Waving", 12);
+        this.sprite = new AnimatedSprite(Loader.spriteSheets.Flag, "Idle", 12);
 
 
         this.collidesWithMap = false;

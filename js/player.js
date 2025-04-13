@@ -284,7 +284,15 @@ class Player extends Entity {
     interactWith(other) {
         if(other instanceof Flag) {
             if(this.colliding(other)) {
-                currentScene.hitFlagToWin();
+                // console.log("COLLIDING WITH FLAG");
+                if(other.sprite.currentAnimation !== "IdleComplete") {
+                    console.log("COLLIDING WITH FLAG");
+                    Loader.playSound("powerup.wav", 0.1);
+                }
+                other.sprite.setAnimation("IdleComplete");
+                this.spawnPosition.x = other.x;
+                this.spawnPosition.y = other.y + 8;
+
             }
         }
         if(other.isEnemy || (other instanceof Collider && other.damagesPlayer)) {
@@ -321,7 +329,7 @@ class Player extends Entity {
             this.sprite.paused = true;
             setFrameTimeout(() => {
                 if(currentScene.restart)
-                    currentScene.restart();
+                    currentScene.restart(this.spawnPosition.x, this.spawnPosition.y);
             }, 240);
         }
     }

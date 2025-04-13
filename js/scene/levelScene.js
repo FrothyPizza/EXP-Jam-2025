@@ -273,9 +273,16 @@ class LevelScene extends Scene {
 
 
 
-    restart() {
+    restart(spawnX, spawnY) {
         console.log("RESTARTING LEVEL");
-        currentScene = new LevelScene(this.levelName, false);
+        if(spawnX && spawnY) {
+            currentScene = new LevelScene(this.levelName, false);
+            currentScene.player.x = spawnX;
+            currentScene.player.y = spawnY;
+            currentScene.player.spawnPosition = { x: spawnX, y: spawnY };
+        } else {
+            currentScene = new LevelScene(this.levelName, false);
+        }
     }
 
     freezeFrame(frames) {

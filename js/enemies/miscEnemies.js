@@ -170,6 +170,7 @@ class DemonEnemy extends Enemy {
         this.framesAlive = framesAlive;
 
 
+
     }
 
     update(map, entities) {
@@ -252,18 +253,21 @@ class DemonEnemy extends Enemy {
 
 
 class OrbEnemy extends Enemy {
-    constructor(x, y) {
-        super(x, y, 4, 4, 50);
+    constructor(x, y, size=4) {
+        super(x, y, size, size, 50);
         this.collidesWithMap = false;
         this.gravity = 0;
         this.defaultGravity = 0;
+
+        
+        this.damping = 0.99; // damping factor for velocity
     }
 
     update(map, entities) {
         super.update(map, entities);
 
-        this.velocity.x *= 0.99; // slow down over time
-        this.velocity.y *= 0.99; // slow down over time
+        this.velocity.x *= this.damping; // slow down over time
+        this.velocity.y *= this.damping; // slow down over time
 
         if(Math.abs(this.velocity.x) < 0.01 && Math.abs(this.velocity.y) < 0.01) {
             this.removeFromScene = true;

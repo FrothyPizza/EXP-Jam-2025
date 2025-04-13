@@ -64,6 +64,9 @@ class Player extends Entity {
         this.isDashing = false;
         this.dashTimer = new Clock();
         this.dashClock = new Clock();
+
+
+        this.FLYING_MODE = false;
     }
 
     update(map, entities) {
@@ -201,18 +204,19 @@ class Player extends Entity {
 
 
 
-
-        if(Math.abs(this.velocity.y) < 0.25) {
-            if(!XOR(Inputs.left, Inputs.right)) {
-                this.sprite.setAnimation("Idle");
+        if(!this.FLYING_MODE) {
+            if(Math.abs(this.velocity.y) < 0.25) {
+                if(!XOR(Inputs.left, Inputs.right)) {
+                    this.sprite.setAnimation("Idle");
+                } else {
+                    this.sprite.setAnimation("Run");
+                }
             } else {
-                this.sprite.setAnimation("Run");
-            }
-        } else {
-            if(this.velocity.y < 0) {
-                this.sprite.setAnimation("Jump");
-            } else if(this.sprite.currentAnimation !== "Feather Fall") {
-                this.sprite.setAnimation("Fall");
+                if(this.velocity.y < 0) {
+                    this.sprite.setAnimation("Jump");
+                } else if(this.sprite.currentAnimation !== "Feather Fall") {
+                    this.sprite.setAnimation("Fall");
+                }
             }
         }
 
@@ -251,6 +255,27 @@ class Player extends Entity {
 
 
         this.handleOffMap(map);
+
+
+        if(this.FLYING_MODE) {
+            this.gravity = 0;
+            this.defaultGravity = 0;
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+
+            this.y += 1;
+
+            this.sprite.setAnimation("Feather Fall");
+
+            // if up inputs, move up
+            if(Inputs.up) {
+                this.moveV(map, -this.speed - 0.125);
+            }
+            // if down inputs, move down
+            if(Inputs.down) {
+                this.moveV(map, this.speed + 0.25);
+            }
+        }
         
 
 
@@ -358,7 +383,9 @@ class Player extends Entity {
                 this.sprite.draw(context, this.x, this.y);
             }
         } else {
+            
             this.sprite.draw(context, this.x, this.y);
+            
         }
 
     }

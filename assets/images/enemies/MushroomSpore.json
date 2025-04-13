@@ -1,0 +1,171 @@
+{ "frames": [
+   {
+    "filename": "MushroomSpore 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 1.aseprite",
+    "frame": { "x": 12, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 2.aseprite",
+    "frame": { "x": 24, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 3.aseprite",
+    "frame": { "x": 36, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 4.aseprite",
+    "frame": { "x": 48, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 5.aseprite",
+    "frame": { "x": 60, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 6.aseprite",
+    "frame": { "x": 72, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 7.aseprite",
+    "frame": { "x": 84, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 8.aseprite",
+    "frame": { "x": 96, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 9.aseprite",
+    "frame": { "x": 108, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 10.aseprite",
+    "frame": { "x": 120, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 11.aseprite",
+    "frame": { "x": 132, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 12.aseprite",
+    "frame": { "x": 144, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 13.aseprite",
+    "frame": { "x": 156, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 14.aseprite",
+    "frame": { "x": 168, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 15.aseprite",
+    "frame": { "x": 180, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   },
+   {
+    "filename": "MushroomSpore 16.aseprite",
+    "frame": { "x": 192, "y": 0, "w": 12, "h": 12 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 12, "h": 12 },
+    "sourceSize": { "w": 12, "h": 12 },
+    "duration": 200
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.13-x64",
+  "image": "MushroomSpore.png",
+  "format": "RGBA8888",
+  "size": { "w": 204, "h": 12 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Default", "from": 0, "to": 0, "direction": "forward", "color": "#000000ff" },
+   { "name": "Idle", "from": 1, "to": 7, "direction": "forward", "color": "#000000ff" },
+   { "name": "Attack", "from": 8, "to": 16, "direction": "forward", "color": "#000000ff" }
+  ],
+  "slices": [
+  ]
+ }
+}

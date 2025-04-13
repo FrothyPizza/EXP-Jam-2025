@@ -330,6 +330,7 @@ document.body.onload = () => {
             'assets/images/enemies/Charon.json',
             'assets/images/enemies/waterfall.json',
             'assets/images/enemies/waterfall_background.json',
+            'assets/images/enemies/MushroomSpore.json',
 
 
             'tiled/GameJamSpriteSheet.tsx',

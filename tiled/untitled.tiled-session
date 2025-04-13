@@ -30,6 +30,14 @@
                 "y": 127.25
             }
         },
+        "levels/charon.tmx": {
+            "scale": 3.518958333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120.20602687821918,
+                "y": 88.23633887869279
+            }
+        },
         "levels/hades.tmx": {
             "scale": 2,
             "selectedLayer": 0,

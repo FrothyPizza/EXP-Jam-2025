@@ -205,7 +205,7 @@ class DemonEnemy extends Enemy {
 
             this.sprite.onAnimationComplete = () => {
                 // spawn OrbEnemy with velocity towards player using trig
-                const orb = new OrbEnemy(this.x + this.width / 2, this.y - this.height / 2);
+                const orb = new OrbEnemy(this.x + this.width / 2, this.y);
                 orb.velocity.x = (dx / distance) * 2;
                 orb.velocity.y = (dy / distance) * 2;
                 // reduce the speed of the orb to 0.5
@@ -244,6 +244,12 @@ class DemonEnemy extends Enemy {
     }
 
 }
+
+
+
+
+
+
 
 class OrbEnemy extends Enemy {
     constructor(x, y) {

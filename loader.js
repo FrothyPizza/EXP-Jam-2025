@@ -332,6 +332,9 @@ document.body.onload = () => {
 
 
             'assets/music/River Styx.mp3',
+            'assets/music/Charon-Boss Fight.mp3',
+
+
 
 
             'assets/sfx/sam/powerup2.wav',

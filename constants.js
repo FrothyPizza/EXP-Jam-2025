@@ -12,7 +12,7 @@ const CONSTANTS = {
             timeStarCutoffs: [90, 120, 180], 
         },
         'charon': {
-            music: {name: 'River Styx.mp3', volume: 0.3},   
+            music: {name: 'Charon-Boss Fight.mp3', volume: 0.3},   
             timeStarCutoffs: [90, 120, 180], 
         },
         'underworld_level': {

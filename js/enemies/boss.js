@@ -85,12 +85,7 @@ class Boss extends Enemy {
     }
 
     stage1Behavior(map, entities) {
-        this.velocity.x = this.speed * this.direction;
-        this.sprite.direction = this.direction;
-        this.sprite.setAnimation("Run");
-        if (this.rightHit || this.leftHit) {
-            this.direction *= -1;
-        }
+
     }
 
     stage2Behavior(map, entities) {

@@ -18,7 +18,8 @@ function shakeScreen(amount) {
     let angle = Math.random() * Math.PI * 2;
     context.view.offsetX = Math.cos(angle) * amount;
     context.view.offsetY = Math.sin(angle) * amount;
-    context.view.lockedToPlayer = true;
+    context.view.wasLockedToPlayer = context.view.lockedToPlayer;
+    // context.view.lockedToPlayer = true;
 
     // lerp back
     executeForXFrames(() => {
@@ -28,6 +29,7 @@ function shakeScreen(amount) {
     setFrameTimeout(() => {
         context.view.offsetX = 0;
         context.view.offsetY = 0;
+        context.view.lockedToPlayer = context.view.wasLockedToPlayer;
     }, 10);
 
     // if gamepad connected, vibrate

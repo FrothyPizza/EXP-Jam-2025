@@ -47,11 +47,14 @@
             }
         },
         "levels/harpy.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 1.5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 346.6666666666667,
-                "y": -58
+                "x": 188.66666666666663,
+                "y": 171.66666666666663
             }
         },
         "levels/level_1.tmx": {
@@ -251,11 +254,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 4,
+            "scale": 11,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2899.25,
-                "y": 91.375
+                "x": 153.72727272727272,
+                "y": 107.68181818181819
             }
         },
         "levels/tower-tileset.tsx": {
@@ -265,11 +268,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 3,
-            "selectedLayer": 2,
+            "scale": 0.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1924.333333333333,
-                "y": 722.8333333333333
+                "x": 858,
+                "y": 613
             }
         },
         "tower-tileset.tsx": {

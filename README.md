@@ -12,7 +12,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - HTML5 + Canvas API  
 - JavaScript (vanilla)  

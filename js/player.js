@@ -246,7 +246,7 @@ class Player extends Entity {
         }
 
         // handle gliding
-        if(this.canGlide && !this.bottomHit && Inputs.jump) {
+        if(this.canGlide && !this.bottomHit && Inputs.jump && !map.pointIsCollidingWithWall(this.x + this.width/2, this.y + 2)) {
             if(this.velocity.y > 0) {
                 this.velocity.y = this.glideFallSpeed;
                 this.sprite.setAnimation("Feather Fall");

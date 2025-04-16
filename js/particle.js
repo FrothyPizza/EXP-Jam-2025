@@ -21,6 +21,6 @@ class Particle extends GameObject {
 
     draw(context) {
         context.fillStyle = this.color;
-        context.fillRect(this.x - context.view.x, this.y - context.view.y, this.width, this.height);
+        context.view.drawRect(this.x, this.y, this.width, this.height);
     }
 }

@@ -1,44 +1,34 @@
-const FLAGS = {
-    diagonal: 0x20000000,
-    horizontal: 0x80000000,
-    vertical: 0x40000000,
-};
-
-let offscreenCanvas = document.createElement("canvas");
-offscreenCanvas.width = 8;
-offscreenCanvas.height = 8;
-let offscreenContext = offscreenCanvas.getContext("2d");
-
-
 class Map {
     constructor(xml) {
         this.xml = xml;
         this.layers = {};
+        // Offscreen cache for each static layer.
+        this.layerCache = {};
         this.tilesetImage = Loader.tilesetImage;
 
-        // {name, x, y}
+        // Game objects and spawn points.
         this.enemies = [];
         this.bossCues = [];
         this.crateLocations = [];
+        this.playerSpawn = { x: 0, y: 0 };
 
-        this.playerSpawn = {x: 0, y: 0};
-        // this.levelComplete = {x: 0, y: 0, width: 0, height: 0};
+        // Process object groups.
         xml.querySelectorAll("objectgroup").forEach((group) => {
             group.querySelectorAll("object").forEach((object) => {
-                if(group.getAttribute("name") == "Spawns") {
-                    if(object.getAttribute("name") == "PlayerSpawn") {
+                if (group.getAttribute("name") === "Spawns") {
+                    if (object.getAttribute("name") === "PlayerSpawn") {
                         this.playerSpawn.x = parseInt(object.getAttribute("x"));
                         this.playerSpawn.y = parseInt(object.getAttribute("y"));
                     }
                 }
-                if(group.getAttribute("name") == "Enemies") {
+                if (group.getAttribute("name") === "Enemies") {
                     this.enemies.push({
                         name: object.getAttribute("name"),
                         x: parseInt(object.getAttribute("x")),
                         y: parseInt(object.getAttribute("y")),
                     });
                 }
-                if(group.getAttribute("name") == "BossCues") {
+                if (group.getAttribute("name") === "BossCues") {
                     this.bossCues.push({
                         name: object.getAttribute("name"),
                         x: parseInt(object.getAttribute("x")),
@@ -47,137 +37,128 @@ class Map {
                         height: parseInt(object.getAttribute("height")),
                     });
                 }
-                if(group.getAttribute("name") == "CrateLocations") {
+                if (group.getAttribute("name") === "CrateLocations") {
                     this.crateLocations.push({
                         x: parseInt(object.getAttribute("x")),
                         y: parseInt(object.getAttribute("y")),
                     });
                 }
-
             });
         });
-        
+
+        // Get map attributes and convert numeric ones.
         xml.querySelector("map").getAttributeNames().forEach((attr) => {
             this[attr] = xml.querySelector("map").getAttribute(attr);
-            // convert to integer if possible
-            if(!isNaN(this[attr])) this[attr] = parseInt(this[attr]);
+            if (!isNaN(this[attr])) this[attr] = parseInt(this[attr]);
         });
 
+        // Parse each layer and build its offscreen cache.
         xml.querySelectorAll("layer").forEach((layer) => {
-            this.layers[layer.getAttribute("name")] = [];
-            layer.querySelector("data").innerHTML.split(",").forEach((tile) => {
-                this.layers[layer.getAttribute("name")].push(parseInt(tile));
-            });
+            let layerName = layer.getAttribute("name");
+            let dataArray = layer
+                .querySelector("data")
+                .innerHTML.split(",")
+                .map((t) => parseInt(t));
+            this.layers[layerName] = dataArray;
+            this.layerCache[layerName] = this.createLayerCanvas(dataArray);
         });
     }
 
-    resolveTile(tile) {
-        let result = {};
-        if (tile & FLAGS.diagonal) {
-            result.diagonal = true;
-        }
-        if (tile & FLAGS.horizontal) {
-            result.horizontal = true;
-        }
-        if (tile & FLAGS.vertical) {
-            result.vertical = true;
-        }
-        result.tile = tile & 0x1FFFFFFF;
-        return result;
-    }
+    // Pre-renders the entire layer onto an offscreen canvas.
+    createLayerCanvas(layerData) {
+        let offscreenCanvas = document.createElement("canvas");
+        offscreenCanvas.width = this.width * this.tilewidth;
+        offscreenCanvas.height = this.height * this.tileheight;
+        let ctx = offscreenCanvas.getContext("2d");
 
-    drawTile(context, tile, x, y) {
-        let resolved = this.resolveTile(tile);
+        // Precalculate the number of tiles per row in the tileset image.
+        const tilesPerRow = Loader.tilesetImage.naturalWidth / this.tilewidth;
 
-        if(resolved.tile == 0) return;
-        resolved.tile--;
+        // Draw every tile onto the offscreen canvas.
+        for (let y = 0; y < this.height; y++) {
+            for (let x = 0; x < this.width; x++) {
+                let tile = layerData[y * this.width + x];
+                if (tile === 0) continue; // Skip empty tiles.
+                tile--; // Adjust for zero-based indexing.
 
-        let tileSize = this.tilewidth;
-        let tileX = resolved.tile % (Loader.tilesetImage.naturalWidth / tileSize);
-        let tileY = Math.floor(resolved.tile / (Loader.tilesetImage.naturalWidth / tileSize));
+                let tileX = tile % tilesPerRow;
+                let tileY = Math.floor(tile / tilesPerRow);
 
-
-        // if(tile == 127 || tile == 168 || tile == 167 || tile == 166 || tile == 246 || tile == 247 || tile == 248) { // 125, 126, 127, 128 are the water tiles
-        if(tile == 127 || tile == 136) {   
-        // this is a water tile. 
-            let frame = Math.floor((APP_ELAPSED_FRAMES % 32) / 8); // returns a number between 0 and 7
-            // so, the water tile will be animated moving downwards. To do thism we'll draw two instances of the tile onto an offscreen canvas, one at the top and one at the bottom, offset by the frame index. Then we'll draw the offscreen canvas onto the main canvas.
-            // clrear the offscreen canvas
-            offscreenContext.clearRect(0, 0, tileSize, tileSize);
-            offscreenContext.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, 0, frame, tileSize, tileSize);
-            offscreenContext.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, 0, -tileSize + frame, tileSize, tileSize);
-            context.drawImage(offscreenCanvas, x - context.view.x, y - context.view.y, tileSize, tileSize);
-        } else {
-            context.save();
-            context.translate(x + tileSize / 2, y + tileSize / 2);
-            context.scale(resolved.horizontal ? -1 : 1, resolved.vertical ? -1 : 1);
-            context.rotate(resolved.diagonal ? -Math.PI / 2 : 0);
-            context.scale(resolved.diagonal ? -1 : 1, 1);
-            context.translate(-(x + tileSize / 2), -(y + tileSize / 2));
-            context.drawImage(Loader.tilesetImage, tileX * tileSize, tileY * tileSize, tileSize, tileSize, x - context.view.x, y - context.view.y, tileSize, tileSize);
-            context.restore();
-        }
-
-    
-
-
-
-    }
-
-
-    draw(context) {
-        // this.layers.forEach((layer) => {
-        Object.keys(this.layers).forEach((layer) => {
-            let layerData = this.layers[layer];
-            let lowerBoundX = Math.floor(context.view.x / this.tilewidth);
-            let lowerBoundY = Math.floor(context.view.y / this.tileheight);
-            let upperBoundX = Math.ceil((context.view.x + context.canvas.width) / this.tilewidth);
-            let upperBoundY = Math.ceil((context.view.y + context.canvas.height) / this.tileheight);
-            
-            for(let y = lowerBoundY; y < upperBoundY; y++) {
-                for(let x = lowerBoundX; x < upperBoundX; x++) {
-                    if(x < 0 || y < 0 || x >= this.width || y >= this.height) continue;
-                    let tile = layerData[y * this.width + x];
-                    this.drawTile(context, tile, x * this.tilewidth, y * this.tileheight);
-                }
+                ctx.drawImage(
+                    Loader.tilesetImage,
+                    tileX * this.tilewidth,
+                    tileY * this.tileheight,
+                    this.tilewidth,
+                    this.tileheight,
+                    x * this.tilewidth,
+                    y * this.tileheight,
+                    this.tilewidth,
+                    this.tileheight
+                );
             }
-            
-            // for(let y = 0; y < this.height; y++) {
-            //     for(let x = 0; x < this.width; x++) {
-                    
-            //         let tile = layerData[y * this.width + x];
-            //         this.drawTile(context, tile, x * this.tilewidth, y * this.tileheight);
-            //     }
-            // }
+        }
+
+        return offscreenCanvas;
+    }
+
+    // Optimized drawing method using the pre-rendered offscreen canvases.
+    // Assumes that context.view exists and defines { x, y } offsets,
+    // and that context.canvas gives the drawing canvas dimensions.
+    draw(context) {
+        const view = context.view;
+        const canvasWidth = context.canvas.width;
+        const canvasHeight = context.canvas.height;
+
+        // Draw each layer with a single drawImage call.
+        Object.keys(this.layerCache).forEach((layerName) => {
+            let cacheCanvas = this.layerCache[layerName];
+            context.drawImage(
+                cacheCanvas,
+                view.x, // Source x: start drawing from the viewport's x position.
+                view.y, // Source y: start drawing from the viewport's y position.
+                canvasWidth, // Source width: match canvas dimensions.
+                canvasHeight, // Source height.
+                0, // Destination x (draw at canvas top-left).
+                0, // Destination y.
+                canvasWidth, // Destination width.
+                canvasHeight // Destination height.
+            );
         });
     }
 
-    // pointIsCollidingWithWall(x, y) {
-    //     if(x < 0 || y < 0 || x > this.width * this.tilewidth - 1 || y > this.height * this.tileheight - 1) return false;
-    //     x = Math.round(x);
-    //     y = Math.round(y);
-    //     let layerData = this.layers["Collision"];
-    //     let tile = layerData[Math.floor(y / this.tileheight) * this.width + Math.floor(x / this.tilewidth)] & 0x1FFFFFFF;
-    //     return Loader.tilesetData.getTileClass(tile) == "wall";
-    // }
+    // Retained for special-case, per-tile drawing if needed.
+    drawTile(context, tile, x, y) {
+        if (tile === 0) return;
+        tile--;
+        const tileSize = this.tilewidth;
+        const tilesPerRow = Loader.tilesetImage.naturalWidth / tileSize;
+        let tileX = tile % tilesPerRow;
+        let tileY = Math.floor(tile / tilesPerRow);
 
-    // pointIsCollidingWithSpikes(x, y) {
-    //     if(x < 0 || y < 0 || x > this.width * this.tilewidth || y > this.height * this.tileheight) return false;
-    //     x = Math.round(x);
-    //     y = Math.round(y);
-    //     let layerData = this.layers["Collision"];
-    //     let tile = this.resolveTile(layerData[Math.floor(y / this.tileheight) * this.width + Math.floor(x / this.tilewidth)]);
+        context.drawImage(
+            Loader.tilesetImage,
+            tileX * tileSize,
+            tileY * tileSize,
+            tileSize,
+            tileSize,
+            x - context.view.x,
+            y - context.view.y,
+            tileSize,
+            tileSize
+        );
+    }
 
-    //     return Loader.tilesetData.getTileClass(tile.tile) === "damage";
-    // }
-
+    // Collision detection methods remain unchanged.
     pointIsCollidingWithType(x, y, type) {
-        if(x < 0 || y < 0 || x > this.width * this.tilewidth - 1 || y > this.height * this.tileheight) return false;
+        if (x < 0 || y < 0 || x > this.width * this.tilewidth - 1 || y > this.height * this.tileheight)
+            return false;
         x = Math.round(x);
         y = Math.round(y);
         let layerData = this.layers["Collision"];
-        let tile = this.resolveTile(layerData[Math.floor(y / this.tileheight) * this.width + Math.floor(x / this.tilewidth)]);
-        return Loader.tilesetData.getTileClass(tile.tile) === type;
+        let tile =
+            layerData[Math.floor(y / this.tileheight) * this.width +
+            Math.floor(x / this.tilewidth)];
+        return Loader.tilesetData.getTileClass(tile) === type;
     }
 
     pointIsCollidingWithWall(x, y) {
@@ -188,22 +169,23 @@ class Map {
         return this.pointIsCollidingWithType(x, y, "damage");
     }
 
-
-    // loops over all blocks in x: (x, x + WIDTH) and y: (y, y + HEIGHT)
-    // returns all block that are a wall and have nothing above it
+    // Loops over blocks in the specified area and finds ground blocks.
     findAllGroundBlocksInScreenBounds(x, y) {
         let blocks = [];
-        let blockX = Math.floor((x) / this.tilewidth);
-        let blockY = Math.floor((y) / this.tileheight);
+        let blockX = Math.floor(x / this.tilewidth);
+        let blockY = Math.floor(y / this.tileheight);
         console.log(blockX, blockY);
-        for(let i = blockX + 1; i < blockX + WIDTH / this.tilewidth; i++) {
-            for(let j = blockY + 1; j < blockY + HEIGHT / this.tileheight; j++) {
-                if(this.pointIsCollidingWithWall(i * this.tilewidth, j * this.tileheight) && !this.pointIsCollidingWithWall(i * this.tilewidth, (j - 1) * this.tileheight) && !this.pointIsCollidingWithSpikes(i * this.tilewidth, (j - 1) * this.tileheight)) {
-                    blocks.push({x: i * this.tilewidth, y: j * this.tileheight - 8});
+        for (let i = blockX + 1; i < blockX + WIDTH / this.tilewidth; i++) {
+            for (let j = blockY + 1; j < blockY + HEIGHT / this.tileheight; j++) {
+                if (
+                    this.pointIsCollidingWithWall(i * this.tilewidth, j * this.tileheight) &&
+                    !this.pointIsCollidingWithWall(i * this.tilewidth, (j - 1) * this.tileheight) &&
+                    !this.pointIsCollidingWithSpikes(i * this.tilewidth, (j - 1) * this.tileheight)
+                ) {
+                    blocks.push({ x: i * this.tilewidth, y: j * this.tileheight - 8 });
                 }
             }
         }
         return blocks;
     }
-
 }

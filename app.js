@@ -42,6 +42,11 @@ function shakeScreen(amount) {
     }
 }
 
+// define method context.view.drawRect(x, y, w, h) that draws a rectangle at the given position and size, but offset by context.view.x and context.view.y
+context.view.drawRect = function(x, y, w, h) {
+    context.fillRect(x - this.x, y - this.y, w, h);
+};
+
 
 function resize() {
     let browserHeight = window.innerHeight;

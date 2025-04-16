@@ -1,7 +1,7 @@
 const CONSTANTS = {
   VERSION: "0.0.1",
 
-  levels: ["styx_level", "charon", "underworld_level", "harpy", "hades"],
+  levels: ["styx_level", "charon", "underworld_level", "hades"],
   playerMaxLives: 3,
 
   level_info: {

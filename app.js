@@ -117,8 +117,9 @@ function update() {
     context.fillRect(0, 0, WIDTH, HEIGHT);
 
 
+
+
     currentScene.update();
-    currentScene.draw(context);
 
     // if(currentScene.sceneComplete) {
     //     level++;
@@ -128,37 +129,31 @@ function update() {
     //     loadScene(CONSTANTS.levels[level], currentScene.playerLives);
     // }
 
-    
-    // draw border around outside of screen
-    context.strokeStyle = 'black';
-    context.lineWidth = 1;
-    context.strokeRect(0, 0, WIDTH, HEIGHT);
-
-
-    updateFrameTimeouts();
-    APP_ELAPSED_FRAMES++;
-
 
     if(!(currentScene instanceof MenuScene) && !(currentScene instanceof WorldMapScene)) {
         // Handle view position based on player
         let player = currentScene.player;
-        // let playerXRelativeToView = player.x - context.view.x;
-        // let playerYRelativeToView = player.y - context.view.y;
-        // if(playerXRelativeToView > WIDTH * 3 / 5) {
-        //     context.view.x = player.x - WIDTH * 3 / 5;
-        // } else if(playerXRelativeToView < WIDTH * 2 / 5) {
-        //     context.view.x = player.x - WIDTH * 2 / 5;
-        // }
-        // if(playerYRelativeToView > HEIGHT * 3 / 5) {
-        //     context.view.y = player.y - HEIGHT * 3 / 5;
-        // } else if(playerYRelativeToView < HEIGHT * 2 / 5) {
-        //     context.view.y = player.y - HEIGHT * 2 / 5;
-        // }
 
-        // actually, just center the view on the player
         if(context.view.lockedToPlayer) {
-            context.view.x = Math.round(player.x - WIDTH / 2);
-            context.view.y = Math.round(player.y - HEIGHT / 2);
+            let maxOffset = 1/32;
+            let playerXRelativeToView = player.x - context.view.x;
+            let playerYRelativeToView = player.y - context.view.y;
+            if(playerXRelativeToView > WIDTH * (1/2 + maxOffset)) {
+                context.view.x = player.x - Math.round(WIDTH * (1/2 + maxOffset));
+            } else if(playerXRelativeToView < WIDTH * (1/2 - maxOffset)) {
+                context.view.x = player.x - Math.round(WIDTH * (1/2 - maxOffset));
+            }
+            if(playerYRelativeToView > HEIGHT * (1/2 + maxOffset)) {
+                context.view.y = player.y - Math.round(HEIGHT * (1/2 + maxOffset));
+            } else if(playerYRelativeToView < HEIGHT * (1/2 - maxOffset)) {
+                context.view.y = player.y - Math.round(HEIGHT * (1/2 - maxOffset));
+            }
+
+            // // actually, just center the view on the player
+            // if(context.view.lockedToPlayer) {
+            //     context.view.x = Math.round(player.x) - WIDTH / 2;
+            //     context.view.y = Math.round(player.y) - HEIGHT / 2;
+            // }
         }
 
 
@@ -171,82 +166,23 @@ function update() {
         context.view.y = Math.round(context.view.y) + Math.round(context.view.offsetY);
 
 
-
-
-
-        // // Check if the player is out of bounds; if so, change the current level
-        // let height = Loader.levels[currentScene.levelName].height * Loader.levels[currentScene.levelName].tileheight;
-        // let width = Loader.levels[currentScene.levelName].width * Loader.levels[currentScene.levelName].tilewidth;
-        // if(player.x > width - 4 || player.x < -4 || player.y > height - 4 || player.y < 4) {
-        //     let horizDir = player.x > WIDTH - 4 ? 1 : player.x < 5 ? -1 : 1;
-
-        //     let playerRealPos = {x: 0, y: 0};
-        //     let currentMap;
-        //     for(let i = 0; i < Loader.gameWorld.maps.length; i++) {
-        //         if(Loader.gameWorld.maps[i].fileName === currentScene.levelName + '.tmx') {
-        //             playerRealPos.x = Loader.gameWorld.maps[i].x + player.x;
-        //             playerRealPos.y = Loader.gameWorld.maps[i].y + player.y;
-        //             currentMap = Loader.gameWorld.maps[i];
-        //             // console.log("playerRealPos: " + playerRealPos.x + ", " + playerRealPos.y);
-        //         }
-        //     }
-
-        //     for(let i = 0; i < Loader.gameWorld.maps.length; i++) {
-        //         // if player is contained in map
-        //         let map = Loader.gameWorld.maps[i];
-        //         if(map.fileName !== currentScene.levelName + '.tmx'
-        //         && playerRealPos.x >= map.x - 4
-        //         && playerRealPos.x <= map.x + map.width 
-        //         && playerRealPos.y >= map.y 
-        //         && playerRealPos.y <= map.y + map.height) {
-
-        //             // Update player position based on the new map's spawn point
-        //             let newLevelName = map.fileName.split('.')[0];
-        //             loadScene(newLevelName);
-        //             currentScene.player.x = playerRealPos.x - map.x + horizDir;
-        //             currentScene.player.y = playerRealPos.y - map.y - 1;
-        //             currentScene.resetPlayerPosition();
-
-        //             break;
-        //         }
-        //     }
-        // }
     }
 
+
+    currentScene.draw(context);
+
+
+    
+    // draw border around outside of screen
+    context.strokeStyle = 'black';
+    context.lineWidth = 1;
+    context.strokeRect(0, 0, WIDTH, HEIGHT);
+
+
+    updateFrameTimeouts();
+    APP_ELAPSED_FRAMES++;
+
+
+
+
 }
-
-// document.body.onload = () => {
-//     setTimeout(() => {
-//         Loader.load(
-//             'assets/images/testplayer.json',
-//             'assets/images/spider.json',
-//             'assets/images/enemies/unicyclist.json',
-//             'assets/images/enemies/mime_head.json',
-//             'assets/images/enemies/turtle.json',
-//             'assets/images/enemies/bee.json',
-//             'assets/images/enemies/corgi.json',
-//             'assets/images/enemies/sheep.json',
-
-//             'assets/images/weapons/cannon.json',
-//             'assets/images/weapons/drill.json',
-//             'assets/images/weapons/hammer.json',
-//             'assets/images/weapons/shuriken.json',
-//             'assets/images/weapons/sword.json',
-//             'assets/images/weapons/spear.json',
-
-//             'assets/images/tiled/tower-tileset.tsx',
-//             'assets/images/new-tiles.png',
-//             'assets/images/tiled/levels/game_world.world',
-//         ).then(() => {
-//             let levels = [];
-//             for (let i = 0; i < Loader.gameWorld.maps.length; i++) {
-//                 levels.push('assets/images/tiled/levels/' + Loader.gameWorld.maps[i].fileName);
-//             }
-//             Loader.tilesetImage = Loader.images['new-tiles.png'];
-
-//             Loader.load(...levels).then(() => {
-//                 init();
-//             });
-//         });
-//     }, 100);
-// }

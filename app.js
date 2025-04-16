@@ -137,22 +137,22 @@ function update() {
         if(context.view.lockedToPlayer) {
             let maxOffset = 1/32;
             let playerXRelativeToView = player.x - context.view.x;
-            let playerYRelativeToView = player.y - context.view.y;
+            // let playerYRelativeToView = player.y - context.view.y;
             if(playerXRelativeToView > WIDTH * (1/2 + maxOffset)) {
                 context.view.x = player.x - Math.round(WIDTH * (1/2 + maxOffset));
             } else if(playerXRelativeToView < WIDTH * (1/2 - maxOffset)) {
                 context.view.x = player.x - Math.round(WIDTH * (1/2 - maxOffset));
             }
-            if(playerYRelativeToView > HEIGHT * (1/2 + maxOffset)) {
-                context.view.y = player.y - Math.round(HEIGHT * (1/2 + maxOffset));
-            } else if(playerYRelativeToView < HEIGHT * (1/2 - maxOffset)) {
-                context.view.y = player.y - Math.round(HEIGHT * (1/2 - maxOffset));
-            }
+            // if(playerYRelativeToView > HEIGHT * (1/2 + maxOffset)) {
+            //     context.view.y = player.y - Math.round(HEIGHT * (1/2 + maxOffset));
+            // } else if(playerYRelativeToView < HEIGHT * (1/2 - maxOffset)) {
+            //     context.view.y = player.y - Math.round(HEIGHT * (1/2 - maxOffset));
+            // }
 
             // // actually, just center the view on the player
             // if(context.view.lockedToPlayer) {
             //     context.view.x = Math.round(player.x) - WIDTH / 2;
-            //     context.view.y = Math.round(player.y) - HEIGHT / 2;
+                context.view.y = Math.round(player.y) - HEIGHT / 2;
             // }
         }
 

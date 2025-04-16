@@ -95,10 +95,8 @@ class Player extends Entity {
         super.update(map, entities);
         this.constrainPosition(map);
 
-        // Do nothing if dead.
         if (this.dead) return;
 
-        // Handle spikes.
         this.handleSpikes(map);
 
         // Handle dash first (it overrides many controls).
@@ -108,43 +106,36 @@ class Player extends Entity {
             return; // Skip the rest of the update while dashing.
         }
 
-        // If not flying mode, use normal gravity.
         if (!this.FLYING_MODE) {
             this.gravity = this.defaultGravity;
         }
 
-        // Apply friction and adjust basic physics.
+        // Apply friction and adjust basic physics
         this.applyPhysics();
 
-        // Handle jump logic.
         this.handleJump(map);
 
-        // Handle wall jumping and wall sliding.
         this.handleWallInteractions(map);
 
-        // Handle horizontal movement.
         this.handleMovement(map);
 
-        // Handle gliding.
         this.handleGlide(map);
 
-        // Handle flying mode if active.
+
         if (this.FLYING_MODE) {
             this.handleFlying(map);
         }
 
-        // Check for falling off the map.
         this.handleOffMap(map);
 
-        // Update invincibility.
         this.handleInvincibility();
 
-        // Update the finite state machine based on the current inputs and physics.
-        this.updateStateMachine();
 
-        // Update the player animation based solely on the FSM state.
+        // Update the finite state machine based on the current inputs and physics, and update the animation based solely on the FSM state.
+        this.updateStateMachine();
         this.updateAnimation();
 
+        
         // Reset wall jumping flag so it doesn't persist.
         this.isWallJumping = false;
     }

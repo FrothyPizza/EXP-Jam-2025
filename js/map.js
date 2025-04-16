@@ -112,10 +112,17 @@ class Map {
         // Draw each layer with a single drawImage call.
         Object.keys(this.layerCache).forEach((layerName) => {
             let cacheCanvas = this.layerCache[layerName];
+            let paralaxFactor = 1.0; // Default parallax factor.
+            if(layerName === "Background_3")
+                paralaxFactor = 0.5; // Adjust parallax for specific layers.
+            // Adjust the source x and y positions based on the layer's parallax factor.
+            const sourceX = Math.floor(view.x * paralaxFactor);
+            const sourceY = Math.floor(view.y * paralaxFactor);
+            // Draw the cached layer image onto the main canvas.
             context.drawImage(
                 cacheCanvas,
-                view.x, // Source x: start drawing from the viewport's x position.
-                view.y, // Source y: start drawing from the viewport's y position.
+                sourceX, // Source x: adjusted for parallax.
+                sourceY, // Source y: adjusted for parallax.
                 canvasWidth, // Source width: match canvas dimensions.
                 canvasHeight, // Source height.
                 0, // Destination x (draw at canvas top-left).
@@ -123,6 +130,18 @@ class Map {
                 canvasWidth, // Destination width.
                 canvasHeight // Destination height.
             );
+
+            // context.drawImage(
+            //     cacheCanvas,
+            //     view.x, // Source x: start drawing from the viewport's x position.
+            //     view.y, // Source y: start drawing from the viewport's y position.
+            //     canvasWidth, // Source width: match canvas dimensions.
+            //     canvasHeight, // Source height.
+            //     0, // Destination x (draw at canvas top-left).
+            //     0, // Destination y.
+            //     canvasWidth, // Destination width.
+            //     canvasHeight // Destination height.
+            // );
         });
     }
 

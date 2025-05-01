@@ -6,28 +6,22 @@ class AnimatedSprite {
         this.width = jsonData.frames[0].frame.w;
         this.height = jsonData.frames[0].frame.h;
 
-        this.tint = null; // Initialize tint property to null
-        // // test red tint
-        // this.tint = "rgba(255, 0, 0, 0.5)";
-
+        this.tint = null;
         this.currentAnimationFrom = 0;
         this.currentAnimationTo = 0;
-
         this.currentFrame = 0;
         this.frameCount = 0;
         this.direction = 1;
         this.isBackwards = false;
         this.nextAnimation = "";
         this.paused = false;
-
         this.onAnimationComplete = null;
+        this.rotation = 0; // rotation in degrees
 
         this.setAnimation(startingAnimation);
+        this.animationSpeed = animationSpeed ||
+            this.jsonData.frames[0].duration / (1000 / APP_FPS);
 
-        // frames per animation
-        this.animationSpeed = animationSpeed || this.jsonData.frames[0].duration / (1000 / APP_FPS);
-
-        // Create offscreen canvas for tinting
         this.offscreenCanvas = document.createElement('canvas');
         this.offscreenCanvas.width = this.width;
         this.offscreenCanvas.height = this.height;
@@ -37,11 +31,10 @@ class AnimatedSprite {
     setAnimation(animation) {
         if (this.currentAnimation === animation) return;
         this.currentAnimation = animation;
-        // find the animation in the json data and set this.currentAnimationFrom and this.currentAnimationTo
-        for (let i = 0; i < this.jsonData.meta.frameTags.length; i++) {
-            if (this.jsonData.meta.frameTags[i].name === animation) {
-                this.currentAnimationFrom = this.jsonData.meta.frameTags[i].from;
-                this.currentAnimationTo = this.jsonData.meta.frameTags[i].to;
+        for (let tag of this.jsonData.meta.frameTags) {
+            if (tag.name === animation) {
+                this.currentAnimationFrom = tag.from;
+                this.currentAnimationTo = tag.to;
                 this.currentFrame = this.currentAnimationFrom;
                 break;
             }
@@ -52,29 +45,28 @@ class AnimatedSprite {
         this.currentFrame = this.currentAnimationFrom;
     }
 
+    setRotation(degrees) {
+        this.rotation = degrees;
+    }
+
     draw(context, x, y) {
         x = Math.round(x);
         y = Math.round(y);
-        // if off screen, don't draw
+
+        // cull off-screen
         if (x + this.width < context.view.x || x > context.view.x + context.canvas.width ||
             y + this.height < context.view.y || y > context.view.y + context.canvas.height) {
             return;
         }
+
+        // draw frame into offscreen canvas
         let frame = this.jsonData.frames[this.currentFrame];
-        let dir = this.isBackwards ? -1 : 1;
-        dir = this.direction * dir;
-
-        // Clear the offscreen canvas
         this.offscreenContext.clearRect(0, 0, this.width, this.height);
-
-        // Draw the frame onto the offscreen canvas
         this.offscreenContext.drawImage(
             this.image,
             frame.frame.x, frame.frame.y, frame.frame.w, frame.frame.h,
             0, 0, frame.frame.w, frame.frame.h
         );
-
-        // Apply tint if set
         if (this.tint) {
             this.offscreenContext.fillStyle = this.tint;
             this.offscreenContext.globalCompositeOperation = 'source-atop';
@@ -82,23 +74,27 @@ class AnimatedSprite {
             this.offscreenContext.globalCompositeOperation = 'source-over';
         }
 
-        // Now draw the offscreen canvas onto the main canvas, handling flipping
-        if (dir === 1) {
-            context.drawImage(
-                this.offscreenCanvas,
-                x - context.view.x, y - context.view.y
-            );
-        } else if (dir === -1) {
-            context.save();
-            context.scale(-1, 1);
-            context.drawImage(
-                this.offscreenCanvas,
-                -x - frame.frame.w + context.view.x, y - context.view.y
-            );
-            context.restore();
-        }
+        if (this.paused) return;
 
-        if(this.paused) return;
+        // compute effective scale for horizontal flipping
+        let scaleX = this.isBackwards ? -1 : 1;
+        scaleX *= this.direction;
+
+        // apply rotation before flip
+        context.save();
+        const cx = x - context.view.x + this.width / 2;
+        const cy = y - context.view.y + this.height / 2;
+        context.translate(cx, cy);
+        // rotate first
+        context.rotate(this.rotation * Math.PI / 180);
+        // then apply horizontal flip
+        context.scale(scaleX, 1);
+        context.drawImage(
+            this.offscreenCanvas,
+            -this.width / 2,
+            -this.height / 2
+        );
+        context.restore();
 
         this.incrementAnimationFrame();
     }
@@ -110,12 +106,8 @@ class AnimatedSprite {
             this.currentFrame++;
             if (this.currentFrame > this.currentAnimationTo) {
                 this.currentFrame = this.currentAnimationFrom;
-
-                if (this.onAnimationComplete !== null) {
-                    this.onAnimationComplete();
-                }
-
-                if (this.nextAnimation !== "") {
+                if (this.onAnimationComplete) this.onAnimationComplete();
+                if (this.nextAnimation) {
                     this.setAnimation(this.nextAnimation);
                     this.nextAnimation = "";
                 }
@@ -124,7 +116,7 @@ class AnimatedSprite {
     }
 }
 
-
+// Simple static sprite
 class Sprite {
     constructor(image, width, height) {
         this.image = image;
@@ -137,21 +129,15 @@ class Sprite {
         x = Math.round(x);
         y = Math.round(y);
 
-        // Apply tint if set
         if (this.tint) {
             context.fillStyle = this.tint;
             context.globalCompositeOperation = 'source-atop';
             context.fillRect(x - context.view.x, y - context.view.y, this.width, this.height);
             context.globalCompositeOperation = 'source-over';
         }
-
-        context.drawImage(this.image, x + context.view.x, y - context.view.y);
+        context.drawImage(this.image, x - context.view.x, y - context.view.y);
     }
 }
-
-
-
-
 
 // Example JSON data
 /*

@@ -10,6 +10,7 @@ const Loader = {
   gameWorld: null,
   audio: {},
   music: {},
+  cutscenes: {},
 
   load: async function () {
     let promises = [];
@@ -33,6 +34,11 @@ const Loader = {
         promises.push(this.loadFont(src));
       } else if (ext === "wav" || ext === "mp3" || ext === "m4a") {
         promises.push(this.loadAudio(src));
+      } else if (ext === "cutscene") {
+        promises.push(this.loadCutscene(src));
+      }
+      else {
+        console.warn("Unknown file type: " + ext);
       }
     }
 
@@ -167,6 +173,40 @@ const Loader = {
       };
     });
   },
+
+  // load .cutscene files, which contain a json object like: 
+  /*[
+    { "type": "fade", "duration": 45, "hold": 0 },               // fade in
+    { "type": "move", "entity": "Player", "path": [
+          { "x": 100, "y": 200, "t":   0 },
+          { "x": 220, "y": 180, "t": 60 },                       // 1 s later
+          { "x": 300, "y": 180, "t": 90 }
+      ]
+    },...*/
+  loadCutscene: async function (src) {
+    console.log("Loading cutscene:", src);
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${src}: ${response.status} ${response.statusText}`);
+      }
+      // Automatically parses the JSON
+      const cutscene = await response.json();
+  
+      // Extract the base name (e.g. "intro" from "path/to/intro.cutscene")
+      const key = src
+        .split("/")
+        .pop()
+        .replace(/\.cutscene$/, "");
+  
+      this.cutscenes[key] = cutscene;
+      console.log(`Loaded cutscene "${key}"`, cutscene);
+    } catch (error) {
+      console.error("Error loading cutscene:", error);
+      throw error;
+    }
+  },
+    
 
   loadAudio: function (src) {
     return new Promise((resolve, reject) => {
@@ -339,6 +379,11 @@ document.body.onload = () => {
       "tiled/GameJamSpriteSheet.png",
       "tiled/levels/game_world.world",
 
+
+      "js/scene/cutscenes/styx_test.cutscene",
+
+
+
       "assets/music/River Styx.mp3",
       "assets/music/Charon-Boss Fight.mp3",
       "assets/music/Bones and Demons -Decending baseline.mp3",
@@ -362,7 +407,10 @@ document.body.onload = () => {
       "assets/sfx/ghost summon1.wav",
       "assets/sfx/Slash.wav",
       "assets/sfx/Wing flap (3).wav",
-      "assets/sfx/unicyclist_death.wav"
+      "assets/sfx/unicyclist_death.wav",
+
+
+
 
       // 'assets/music/unicyclist_theme.mp3',
     ).then(() => {

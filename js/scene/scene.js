@@ -19,12 +19,13 @@ class Scene {
         this.isFading = false;
         this.fadeDuration = 60; // Duration of fade in frames
         this.timeToStayFullyFaded = 0; // Time to stay fully faded in frames
+        this.fadeColor = 'white'; // Default fade color
 
     }
 
 
 
-    startFade(fadeDuration, timeToStayFullyFaded) {
+    startFade(fadeDuration, timeToStayFullyFaded, targetColor) {
         this.isFading = true;
         this.fadeFrame = 0;
         this.fadeDuration = fadeDuration || this.fadeDuration;
@@ -36,12 +37,20 @@ class Scene {
         if (this.isFading) {
             this.fadeFrame++;
             const alpha = this.fadeFrame / this.fadeDuration;
-            context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            // context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            // use the fade color with alpha
+            context.fillStyle = this.fadeColor;
+            context.globalAlpha = alpha;
             context.fillRect(0, 0, context.canvas.width, context.canvas.height);
             if (this.fadeFrame >= this.fadeDuration + this.timeToStayFullyFaded) {
                 this.isFading = false;
+
+                context.globalAlpha = 1; // Reset alpha to 1 after fading out
             }
+
         }
+
+
     }
 
 

@@ -99,6 +99,7 @@ class Player extends Entity {
 
         this.handleSpikes(map);
 
+
         // Handle dash first (it overrides many controls).
         if (this.handleDash(entities)) {
             this.updateStateMachine();
@@ -347,7 +348,9 @@ class Player extends Entity {
             this.state = PLAYER_STATES.RUNNING;
         } else {
             this.state = PLAYER_STATES.IDLE;
+
         }
+
     }
 
     // Updates the player animation solely based on the FSM state.

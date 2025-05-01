@@ -1,5 +1,5 @@
 {
-    "activeFile": "levels/styx_level.tmx",
+    "activeFile": "levels/underworld_level.tmx",
     "expandedProjectPaths": [
         "levels",
         "."
@@ -42,19 +42,19 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 112,
-                "y": 90.75
+                "x": 111,
+                "y": 90.25
             }
         },
         "levels/harpy.tmx": {
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 4,
+            "scale": 0.25,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 2303.25,
-                "y": 123.875
+                "x": 1440,
+                "y": 810
             }
         },
         "levels/level_1.tmx": {
@@ -254,11 +254,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 8,
-            "selectedLayer": 2,
+            "scale": 0.125,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 2884.75,
-                "y": 117.9375
+                "x": 512,
+                "y": -420
             }
         },
         "levels/tower-tileset.tsx": {
@@ -268,11 +268,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "scale": 5.5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1204,
-                "y": 467.33333333333326
+                "x": 352,
+                "y": 175.72727272727275
             }
         },
         "tower-tileset.tsx": {
@@ -284,23 +284,23 @@
     "openFiles": [
         "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
-        "levels/level_7.tmx",
-        "levels/level_run_2.tmx",
-        "levels/level_run_1.tmx"
+        "levels/hades.tmx",
+        "levels/harpy.tmx",
+        "levels/underworld_level.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "GameJamSpriteSheet.tsx",
         "levels/styx_level.tmx",
+        "levels/hades.tmx",
+        "levels/harpy.tmx",
+        "levels/underworld_level.tmx",
         "levels/level_7.tmx",
         "levels/level_run_1.tmx",
-        "GameJamSpriteSheet.tsx",
         "levels/level_run_2.tmx",
         "tower-tileset.tsx",
         "levels/level_blank.tmx",
         "levels/level_3-5.tmx",
-        "levels/level_1.tmx",
-        "levels/level_8.tmx",
-        "levels/level_6.tmx",
-        "levels/level_5.tmx"
+        "levels/level_1.tmx"
     ]
 }

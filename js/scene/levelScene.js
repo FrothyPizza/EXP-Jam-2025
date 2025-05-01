@@ -43,6 +43,11 @@ class LevelScene extends Scene {
 
         // For detecting pause input toggle
         this.previousPauseInput = false;
+
+
+        setFrameTimeout(() => {
+            this.cutscene = new Cutscene(Loader.cutscenes["styx_test"], this);
+        }, 4);
     }
 
 
@@ -178,6 +183,13 @@ class LevelScene extends Scene {
         if(this.frozen) return;
 
 
+        if (this.cutscene) {
+            this.cutscene.update();
+            return;                           // block normal gameplay until done
+        }
+      
+
+
         // Update all entities
         for (let entity of this.entities) {
             entity.update(this.map, this.entities);
@@ -276,6 +288,7 @@ class LevelScene extends Scene {
 
 
         this.drawFade(context);
+
 
 
 

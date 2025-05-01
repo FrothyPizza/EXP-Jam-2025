@@ -46,33 +46,41 @@
                 script.src = src;
                 document.head.appendChild(script);
             }
-            // const files = [
-            //     "assets/images/enemies/tadpole_json.js",
+            const files = [
+                'constants.js',
+                'util/util.js',
+                'util/input.js',
+                'util/animatedSprite.js',
+                'loader.js',
 
-            //     "secret.js",
-            //     "js/chatGPT.js",
+                'js/map.js',
+                'js/entity.js',
+                'js/collider.js',
+                'js/particle.js',
 
-            //     "util/util.js",
-            //     "util/input.js",
-            //     "util/animatedSprite.js",
-            //     "loader copy.js",
+                'js/enemies/enemy.js',
+                'js/enemies/boss.js',
+                'js/player.js',
+                'js/enemies/turtle.js',
+                'js/enemies/miscEnemies.js',
+                'js/enemies/charon.js',
+                'js/enemies/sporeEnemy.js',
+                'js/enemies/hades.js',
 
-            //     "js/map.js",
-            //     "js/entity.js",
-            //     "js/collider.js",
-            //     "js/particle.js",
+                'js/projectile.js',
 
-            //     "js/enemy.js",
-            //     "js/player.js",
-            //     "js/unicyclist.js",
-            //     "js/turtle.js",
-            //     "js/bee.js",
                 
-            //     "scene.js",
-            //     "app.js",
+                'js/scene/flag.js',
+                'js/scene/scene.js',
+                'js/scene/levelScene.js',
+                'js/scene/menuScene.js',
+                'js/scene/worldMapScene.js',
+                'js/scene/actions.js',
+                'js/scene/cutscene.js',
+                'app.js'
 
 
-            // ];
+            ];
             // files.forEach(link);
         </script>
 
@@ -105,6 +113,8 @@
         <script src="js/scene/levelScene.js"></script>
         <script src="js/scene/menuScene.js"></script>
         <script src="js/scene/worldMapScene.js"></script>
+        <script src="js/scene/actions.js"></script>
+        <script src="js/scene/cutscene.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

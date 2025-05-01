@@ -1,0 +1,13 @@
+[
+  { "action": "fade",     "duration": 45, "hold": 1 },
+  {"action":   "move",
+    "entity": "Player",
+    "path": [
+      { "x": 100, "y": 100, "t":  0 },
+      { "x": 260, "y": 150, "t": 60 },
+      { "x": 100, "y": 80, "t": 90 }
+    ]
+  },
+  { "action": "dialogue", "text": "Where am I...?" },
+  { "action": "fade",     "duration": 60, "hold": 60 }
+]

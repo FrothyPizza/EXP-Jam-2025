@@ -1,3 +1,11 @@
+
+/*
+    The Map class handles:
+    - Loading and parsing a Tiled map XML file.
+    - Creating an offscreen canvas for each layer to optimize rendering.
+    - Storing game objects like enemies, spawn points, and crate locations.
+    - Providing methods for drawing the map and checking collisions.
+*/
 class Map {
     constructor(xml) {
         this.xml = xml;
